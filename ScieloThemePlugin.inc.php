@@ -72,8 +72,8 @@ class ScieloThemePlugin extends ThemePlugin {
 		]);
 
 		$this->addOption('baseColour', 'FieldColor', [
-			'label' => __('plugins.themes.default.option.colour.label'),
-			'description' => __('plugins.themes.default.option.colour.description'),
+			'label' => __('plugins.themes.scielo.option.colour.label'),
+			'description' => __('plugins.themes.scielo.option.colour.description'),
 			'default' => '#1E6292',
 		]);
 
@@ -82,18 +82,18 @@ class ScieloThemePlugin extends ThemePlugin {
 				'options' => [
 				[
 					'value' => true,
-					'label' => __('plugins.themes.default.option.showDescriptionInServerIndex.option'),
+					'label' => __('plugins.themes.scielo.option.showDescriptionInServerIndex.option'),
 				],
 			],
 			'default' => false,
 		]);
 		$this->addOption('useHomepageImageAsHeader', 'FieldOptions', [
-			'label' => __('plugins.themes.default.option.useHomepageImageAsHeader.label'),
-			'description' => __('plugins.themes.default.option.useHomepageImageAsHeader.description'),
+			'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.label'),
+			'description' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.description'),
 				'options' => [
 				[
 					'value' => true,
-					'label' => __('plugins.themes.default.option.useHomepageImageAsHeader.option')
+					'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.option')
 				],
 			],
 			'default' => false,
@@ -261,7 +261,7 @@ class ScieloThemePlugin extends ThemePlugin {
 	 * @return string
 	 */
 	function getDisplayName() {
-		return __('plugins.themes.default.name');
+		return __('plugins.themes.scielo.name');
 	}
 
 	/**
@@ -269,6 +269,6 @@ class ScieloThemePlugin extends ThemePlugin {
 	 * @return string
 	 */
 	function getDescription() {
-		return __('plugins.themes.default.description');
+		return __('plugins.themes.scielo.description');
 	}
 }
