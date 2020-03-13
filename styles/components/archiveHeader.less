@@ -11,15 +11,99 @@
 		font-size: @font-bump;
 		line-height: @line-lead;
 		text-align: center;
+		box-sizing: border-box;
 
-		input[type="text"] {
+
+		textarea{
+			&:extend(.cmp_form textarea);
 			font-size: @font-bump;
+			line-height: 34px;
+			height: 34px;
+			width: 600px;
 		}
 
 		button[type="submit"] {
 			font-size: @font-bump;
 		}
+
+		.col-md-2{
+			max-width: 16.66666667%;
+			float: left;
+		}
+
+		.col-sm-2{
+			position: relative;
+			min-height: 1px;
+		}
 	}
+
+	.col-md-10 .col-md-12 .col-md-2{
+		max-width: 83.333333%;
+		padding-left: @half;
+		padding-right: @half;
+	}
+
+	.col-sm-12 .col-sm-10{
+		float: left;
+		min-height: 1px;
+	}
+
+	div.form-control {
+		padding: 10px 14px;
+		min-height: 42px;
+		border-right: none;
+		float: none;
+
+		&.full-input {
+			border-right: 1px solid #b5c4e5;
+		}
+	}
+
+	div.form-control {
+		padding: 7px 7px;
+		line-height: 26px;
+	}
+
+	div.form-textarea,
+	div.form-control,
+	.selectBox {
+		border-color: #b5c4e5;
+	}
+
+	textarea.form-control {
+		resize: none;
+		height: auto;
+		padding: 0 20px 0 0;
+		overflow-y: none;
+		border: none;
+		display: block;
+
+	}
+
+	.input-group {
+		.selectBox {
+			display: table-cell;
+			border-left: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		div.form-textarea {
+			padding: 10px 14px;
+			background: #fff;;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border: 1px solid #b5c4e5;
+			border-right: 0;
+			display: table-cell;
+			position: relative;
+	
+			&.no-divisor {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+		}
+	}
+
 }
 
 .archiveHeader_series{
