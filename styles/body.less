@@ -85,13 +85,13 @@ a {
 }
 
 // Layout scaffold for content and sidebars
-.pkp_structure_main {
+h2 {
 	padding: @base;
 }
 
 @media( min-width: @screen-phone ) {
 
-	.pkp_structure_main {
+	h2 {
 		padding: @double;
 	}
 }
@@ -99,7 +99,7 @@ a {
 @media( min-width: @screen-tablet ) {
 
 	// Full-height borders wrapping primary content column
-	.pkp_structure_main {
+	h2 {
 
 		&:before,
 		&:after {
@@ -129,7 +129,7 @@ a {
 		width: @sidebar-width;
 	}
 
-	.pkp_structure_main {
+	h2 {
 		float: left;
 		padding: 0 @triple (@triple * 3);
 		width: @screen-desktop-container - @sidebar-width;

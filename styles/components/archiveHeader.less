@@ -12,23 +12,30 @@
 		line-height: @line-lead;
 		text-align: center;
 		box-sizing: border-box;
-
-
-		textarea{
-			&:extend(.cmp_form textarea);
-			font-size: @font-bump;
-			line-height: 34px;
-			height: 34px;
-			width: 600px;
-		}
+		display: flex;
 
 		button[type="submit"] {
+			background: @primary-lift;
+			color: #fff;
+			border: 0;
 			font-size: @font-bump;
+			width: 100%;
+			padding: 5px 15px;
+			align-content: center;
+			display: inline-block;
+			top: @base;
+			right: 2px;
+			&:hover,
+			&:focus {
+				box-shadow: inset 0 1em 1em rgba(0, 0, 0, 0.1);
+			}
 		}
 
 		.col-md-2{
-			max-width: 16.66666667%;
+			width: 11%;
 			float: left;
+			position: relative;
+			min-height: 1px;
 		}
 
 		.col-sm-2{
@@ -38,7 +45,7 @@
 	}
 
 	.col-md-10 .col-md-12 .col-md-2{
-		max-width: 83.333333%;
+		max-width: 100%;
 		padding-left: @half;
 		padding-right: @half;
 	}
@@ -48,9 +55,8 @@
 		min-height: 1px;
 	}
 
-	div.form-control {
+	textarea.form-control {
 		padding: 10px 14px;
-		min-height: 42px;
 		border-right: none;
 		float: none;
 
@@ -59,28 +65,44 @@
 		}
 	}
 
-	div.form-control {
-		padding: 7px 7px;
-		line-height: 26px;
-	}
-
 	div.form-textarea,
-	div.form-control,
 	.selectBox {
 		border-color: #b5c4e5;
 	}
 
 	textarea.form-control {
+		&:extend(.cmp_form textarea);
 		resize: none;
-		height: auto;
+		height: 32px;
 		padding: 0 20px 0 0;
 		overflow-y: none;
 		border: none;
 		display: block;
+		width: 500px;
+	}
 
+	.selectBox {
+		padding-top: 7px;
+
+		&.index {
+			width: 20%;
+			border-left: none;
+
+			select {
+				border-left: 1px solid #e5e5e5;
+			}
+		}
+		&.connector {
+			border-left: 1px solid #b5c4e5;
+			border-right: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			width: 18%;
+		}
 	}
 
 	.input-group {
+		display: table;
 		.selectBox {
 			display: table-cell;
 			border-left: 0;
@@ -104,6 +126,37 @@
 		}
 	}
 
+}
+
+.selectBox {
+	overflow: hidden;
+	vertical-align: top;
+	border: 1px solid #ccc;
+	line-height: 1.42857143;
+
+	&.inline {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	select {
+		width: 100%;
+		-webkit-appearance: none;
+		border: 0;
+		line-height: 1;
+		background: none;
+		height: 32px;
+		text-align: center;
+		padding: 8px 12px;
+
+		&:active, &:focus {
+			outline: 0;
+
+			option {
+				outline: 0;
+			}
+		}
+	}
 }
 
 .archiveHeader_series{
