@@ -13,6 +13,143 @@
 	.pkp_helpers_clear;
 }
 
+
+.multiLineEllipsis(@lineHeight: 1.2em, @lineToShow: 3, @font:11px) {
+	display: -webkit-box;
+	max-width: 95%;
+	height: @font*@lineHeight*@lineToShow; /* Fallback for non-webkit */
+	line-height: @lineHeight;
+	-webkit-line-clamp: @lineToShow;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+//Knowlegde list
+.periodicals {
+	.levelMenu {
+		background: #fafaf8;
+		padding: 10px 15px;
+
+		>ul{
+			padding: 0px @double;
+			margin: 0px;
+			>li{				
+				display: inline-block;
+				text-align: center;
+				width: 16%;			
+				background: url(/plugins/themes/scielo-theme/styles/img/dashline.v.png) top right repeat-y;	
+
+				&:last-child {
+					background: none;
+				}
+
+				>a{
+					padding: 0 12px;
+					font-size: 1.1em;
+					font-weight: bold;
+					line-height: 58px;
+				}
+			}
+		}
+	}
+	.search {
+		float: right;
+	}
+}
+
+.slide-item {
+	&.release {
+		display: inline-block;
+		vertical-align: top;
+		padding: 0 10px 0 0;
+		color: #7b7469;
+		width: 100%;
+		font-size: .8em;
+
+		.col-md-12 {
+			background: #f6f6f4;
+			border-radius: 4px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			min-height: 95px;
+		}
+		h3 {
+			color: @primary-lift;
+		    margin: 0;
+		    font-size: 1em;
+
+		    &.ellipsis {
+				.multiLineEllipsis(@lineHeight: 1.4em, @lineToShow: 3, @font: 14px);
+			}
+		}
+		a {
+			color: @primary-lift;
+			font-weight: bold;
+		}
+		span {
+			display: block;
+			text-transform: uppercase;
+			color: #7b7469;
+			font-size: .85em;
+			font-weight: normal;
+		}
+		strong {
+				color: @primary-lift;
+		}
+		.info {
+			color: #7b7469;
+			font-weight: normal;
+
+			.ellipsis {
+				.multiLineEllipsis(@lineHeight: 1.4em, @lineToShow: 3, @font: 12.6px);
+			}
+		}
+	}
+}
+
+.slider {
+	position: relative;	
+
+	.slide-back,
+	.slide-next {
+		position: absolute;
+
+		.glyphBtn {
+			margin-top: -32px;
+		}
+	}
+
+	.slide-back {
+		left: -27px;
+	}
+	.slide-next {
+		right: -27px;
+	}
+}
+
+.slide-container {
+	height: 120px;
+	position: relative;
+	overflow: hidden;
+
+	.slide-wrapper {
+		position: absolute;
+	}
+}
+
+.last_issues{
+	.slide-item {
+		&.release {
+			.col-md-12 {
+				min-height: 120px;
+				//outline:1px solid blue;
+			}
+		}
+	}
+}
+
 // Metrics' row
 .metrics {
 	.levelMenu {

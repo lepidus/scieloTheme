@@ -20,6 +20,12 @@
                 <li>
                     <a href="#">Exatas</a>
                 </li>
+                <li>
+                    <a href="#">Humanas</a>
+                </li>
+                <li>
+                    <a href="#">Sociais</a>
+                </li>
             </ul>
             <div class="clearfix"></div>
         </div>

@@ -85,13 +85,13 @@ a {
 }
 
 // Layout scaffold for content and sidebars
-h2 {
+.pkp_structure_main {
 	padding: @base;
 }
 
 @media( min-width: @screen-phone ) {
 
-	h2 {
+	.pkp_structure_main {
 		padding: @double;
 	}
 }
@@ -99,7 +99,7 @@ h2 {
 @media( min-width: @screen-tablet ) {
 
 	// Full-height borders wrapping primary content column
-	h2 {
+	.pkp_structure_main {
 
 		&:before,
 		&:after {
@@ -109,7 +109,7 @@ h2 {
 			left: 0;
 			bottom: 0;
 			width: 1px;
-			background: @bg-border-color;
+			//background: @bg-border-color;
 		}
 
 		&:after {
@@ -129,7 +129,7 @@ h2 {
 		width: @sidebar-width;
 	}
 
-	h2 {
+	.pkp_structure_main {
 		float: left;
 		padding: 0 @triple (@triple * 3);
 		width: @screen-desktop-container - @sidebar-width;
