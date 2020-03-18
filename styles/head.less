@@ -13,7 +13,7 @@
 
 // Structural components of the header layout
 .pkp_structure_head {
-	background-color: @bg-base;
+	background-color: #fff;
 	border-bottom: @bg-border;
 }
 
@@ -37,7 +37,7 @@
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-left: @base;
-	text-align: left;
+	text-align: center;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -45,9 +45,32 @@
 	font-family: @font-site-title;
 	font-size: @font-sml;
 
+
 	> a {
 		padding-top: @base;
 		padding-bottom: @base;
+
+		small{
+			position: absolute;
+			font-size: 20px;
+			font-family: 'Arapey', serif;
+			color: #494641;
+			font-style: italic;
+			padding-left: 40px;
+			border-bottom: 1px solid #ccc;
+			padding-bottom: 2px;
+			padding-right: 5px;
+			margin-top: -47px;
+			margin-left: -10px;
+		}
+
+		span{
+			display: block;
+			font-size:16px;
+			font-family: 'Arapey', serif;
+			color: #333;
+			white-space: nowrap;
+		}	
 
 		&:focus {
 			outline: 0;
@@ -69,6 +92,7 @@
 			max-width: 100%;
 			width: auto;
 			height: auto;
+			z-index: 2;
 		}
 	}
 
@@ -181,7 +205,7 @@
 
 @media (min-width: @screen-desktop) {
 	.pkp_head_wrapper {
-		padding-top: @triple * 2; // Make room for the user nav at the top
+		padding-top: @double; // Make room for the user nav at the top
 	}
 
 	.pkp_site_nav_toggle {
@@ -205,7 +229,8 @@
 		}
 
 		.is_img img {
-			max-height: 80px; // must match height - padding of .is_img
+			max-height: 140px; // must match height - padding of .is_img
+			padding-left: @triple;
 		}
 	}
 
@@ -437,7 +462,7 @@
 		> li.in_focus > a,
 		> li > a:hover,
 		> li > a:focus {
-			color: @text-bg-base;
+			color: @text-light;
 		}
 
 		// Align to the right edge of the container

@@ -25,6 +25,8 @@
 	{/if} *}
 </div><!-- pkp_structure_content -->
 
+
+
 <div class="pkp_structure_footer_wrapper" role="contentinfo">
 	<a id="pkp_content_footer"></a>
 
@@ -37,9 +39,21 @@
 		{/if}
 
 		<div class="pkp_brand_footer" role="complementary">
-			<a href="{url page="about" op="aboutThisPublishingSystem"}">
-				<img alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
-			</a>
+			<div class="container">
+				<div class="col-md-2 col-sm-2">
+					<span class="logo-svg-footer"></span>
+				</div>
+				<div class="col-md-8 col-sm-9">
+					<strong>SciELO - Scientific Electronic Library Online</strong><br/>
+					Avenida Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil<br/>
+					Tel.: (55 11) 5083-3639/59 E-mail: scielo@scielo.org	
+				</div>
+				<a href="{url page="about" op="aboutThisPublishingSystem"}">
+					<img alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
+				</a>
+			</div>
+			<div class="collectionSignature">
+  			</div>
 		</div>
 	</div>
 </div><!-- pkp_structure_footer_wrapper -->

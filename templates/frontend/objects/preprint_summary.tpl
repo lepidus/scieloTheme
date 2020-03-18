@@ -31,6 +31,5 @@
             <h3 class="ellipsis"> {$preprint->getLocalizedTitle()|strip_unsafe_html} </h3>           
         </div>
     </a>
-    {call_hook name="Templates::Archive::Preprint"}
 </div>
 

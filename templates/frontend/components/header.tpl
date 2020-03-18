@@ -35,7 +35,12 @@
 						<span>Open Menu</span>
 					</button>
 					<div class="pkp_site_name">
-					{capture assign="homeUrl"}
+						<a href="{$homeUrl}" class="is_img">
+							<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
+							<small>Brasil</small>
+            				<span>Scientific Electronic Library Online</span>
+						</a>
+					{* {capture assign="homeUrl"}
 						{if $currentContext && $multipleContexts}
 							{url page="index" router=$smarty.const.ROUTE_PAGE}
 						{else}
@@ -54,13 +59,12 @@
 						</a>
 					{else}
 						<a href="{$homeUrl}" class="is_img">
-							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
-						</a>
+							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						</a>
 					{/if}
 					</div>
 					{if !$requestedPage || $requestedPage === 'index'}
 						<h1 class="pkp_screen_reader">{$displayPageHeaderTitle|escape}</h1>
-					{/if}
+					{/if} *}
 				</div>
 
 				{* Primary site navigation *}
@@ -72,12 +76,12 @@
 
 				<nav class="pkp_site_nav_menu" aria-label="{translate|escape key="common.navigation.site"}">
 					<a id="siteNav"></a>
-					<div class="pkp_navigation_primary_row">
-						<div class="pkp_navigation_primary_wrapper">
+					{* <div class="pkp_navigation_primary_row">
+						<div class="pkp_navigation_primary_wrapper"> *}
 							{* Primary navigation menu for current application *}
-							{$primaryMenu}
+							{* {$primaryMenu}
 						</div>
-					</div>
+					</div> *}
 					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>

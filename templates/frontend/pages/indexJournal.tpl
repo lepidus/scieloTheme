@@ -40,8 +40,8 @@
 			<div class="col-md-12">
 				<h2>{translate key="index.latestPreprints"}</h2>
 				<div class="slider" id="pressreleases">
-					{* <a href="javascript:;" class="slide-back"><span class="glyphBtn arrowLeft"></span></a>
-					<a href="javascript:;" class="slide-next"><span class="glyphBtn arrowRight"></span></a> *}
+					<a href="javascript:;" class="slide-back"><span class="glyphBtn arrowLeft"></span></a>
+					<a href="javascript:;" class="slide-next"><span class="glyphBtn arrowRight"></span></a>
 					<div class="slide-container">
 						<div class="slide-wrapper">
 							{foreach from=$publishedSubmissions item="preprint"}
@@ -54,7 +54,6 @@
 			<div class="clearfix"></div>
     	</div>
     </div>
-
 
 	{* Server Description *}
 	{if $activeTheme->getOption('showDescriptionInServerIndex')}
