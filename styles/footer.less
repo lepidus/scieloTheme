@@ -12,6 +12,7 @@
 	background: @bg-shade;
 }
 
+
 .pkp_structure_footer {
 	text-align: center;
 }
@@ -21,34 +22,41 @@
 	text-align: left;
 }
 
-.logo-svg-footer{
-	background: url(/plugins/themes/scielo-theme/styles/img/logo-scielo.png);
-	background-position: center center;
-	background-repeat:no-repeat;
-	display: block;
-	max-height: 140px;;
-	max-width: 100%;
-}
-
 // OJS brand images in footer
 .pkp_brand_footer {
+	margin: 10px 0 10px;
+	font-size: .8em;
 	.pkp_helpers_clear();
-	padding: @triple;
+	padding: @double;
 
-	a {
-		float: right;
-		display: block;
-		max-width: 150px;
+	.container{
+		padding: 20px 0;
+		display: flex;
+	 }
+
+	.col-md-2 {
+		width: 11%;
+		padding: 5px;
 	}
-}
-
-.collectionSignature .col-md-8 {
-	padding-top: 5px;
-	line-height: 1.8em;
-
-	.col-md-8{
-		width: 66.66666667%;
+	.col-md-8 {
+		padding-top: 5px;
+		line-height: 1.8em;
 		float: left;
 	}
 
+	a {
+		img{
+			float: right;
+			display: block;
+			width: 90px;
+			height: 70px;
+		}
+	}
+
+	img {
+		width: 80px;
+		height: 80px;
+		max-width: 90px;
+	}
 }
+

@@ -41,7 +41,7 @@
 		<div class="pkp_brand_footer" role="complementary">
 			<div class="container">
 				<div class="col-md-2 col-sm-2">
-					<span class="logo-svg-footer"></span>
+					<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />	
 				</div>
 				<div class="col-md-8 col-sm-9">
 					<strong>SciELO - Scientific Electronic Library Online</strong><br/>
@@ -52,8 +52,6 @@
 					<img alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
 				</a>
 			</div>
-			<div class="collectionSignature">
-  			</div>
 		</div>
 	</div>
 </div><!-- pkp_structure_footer_wrapper -->

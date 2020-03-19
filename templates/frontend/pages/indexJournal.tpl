@@ -35,25 +35,17 @@
     {include file="frontend/components/knowledgeList.tpl"}
 
 	{* Latest preprints *}
-	<div class="row">
-		<div class="block releases">
-			<div class="col-md-12">
-				<h2>{translate key="index.latestPreprints"}</h2>
-				<div class="slider" id="pressreleases">
-					<a href="javascript:;" class="slide-back"><span class="glyphBtn arrowLeft"></span></a>
-					<a href="javascript:;" class="slide-next"><span class="glyphBtn arrowRight"></span></a>
-					<div class="slide-container">
-						<div class="slide-wrapper">
-							{foreach from=$publishedSubmissions item="preprint"}
-								{include file="frontend/objects/preprint_summary.tpl"}
-							{/foreach}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-    	</div>
-    </div>
+	<section class="homepage_latest_preprints">
+		<h1>{translate key="index.latestPreprints"}</h1>
+		<ul class="cmp_article_list articles">
+			{foreach from=$publishedSubmissions item="preprint"}
+				<li>
+					{include file="frontend/objects/preprint_summary.tpl"}
+				</li>
+			{/foreach}
+		</ul> 
+	</section>
+
 
 	{* Server Description *}
 	{if $activeTheme->getOption('showDescriptionInServerIndex')}

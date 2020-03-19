@@ -20,16 +20,103 @@
 	{assign var="showAuthor" value=true}
 {/if}
 
-<div class="slide-item release">
-    <a id="preprint-{$preprint->getId()}" {if $journal}href="{url journal=$journal->getPath() page="preprint" op="view" path=$preprintPath}"{else}href="{url page="preprint" op="view" path=$preprintPath}"{/if} target="_blank">
-        <div class="col-md-12">
-            <div class="published">
-                {if $preprint->getDatePublished()}
-                    <span>{translate key="submissions.published"}: {$preprint->getDatePublished()|date_format:$dateFormatShort}</span>
-                {/if}
-            </div>
-            <h3 class="ellipsis"> {$preprint->getLocalizedTitle()|strip_unsafe_html} </h3>           
-        </div>
-    </a>
-</div>
+<div class="obj_article_summary">
+	{if $preprint->getCurrentPublication()->getLocalizedData('coverImage')}
+		<div class="cover">
+			<a {if $journal}href="{url journal=$journal->getPath() page="preprint" op="view" path=$preprintPath}"{else}href="{url page="preprint" op="view" path=$preprintPath}"{/if} class="file">
+				{assign var="coverImage" value=$preprint->getCurrentPublication()->getLocalizedData('coverImage')}
+				<img
+					src="{$preprint->getCurrentPublication()->getLocalizedCoverImageUrl($preprint->getData('contextId'))|escape}"
+					alt="{$coverImage.altText|escape|default:''}"
+				>
+			</a>
+		</div>
+	{/if}
 
+	<div class="title">
+		<a id="preprint-{$preprint->getId()}" {if $journal}href="{url journal=$journal->getPath() page="preprint" op="view" path=$preprintPath}"{else}href="{url page="preprint" op="view" path=$preprintPath}"{/if}>
+			{$preprint->getLocalizedTitle()|strip_unsafe_html}
+			{if $preprint->getLocalizedSubtitle()}
+				<span class="subtitle">
+					{$preprint->getLocalizedSubtitle()|escape}
+				</span>
+			{/if}
+		</a>
+	</div>
+	<div class="meta">
+
+		{if $showAuthor}
+		<div class="authors">
+			{$preprint->getAuthorString()|escape}
+		</div>
+		{/if}
+
+		{* DOI (requires plugin) *}
+		{foreach from=$pubIdPlugins item=pubIdPlugin}
+			{if $pubIdPlugin->getPubIdType() != 'doi'}
+				{continue}
+			{/if}
+			{assign var=pubId value=$preprint->getCurrentPublication()->getStoredPubId($pubIdPlugin->getPubIdType())}
+			{if $pubId}
+				{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+				<div class="doi">
+						{capture assign=translatedDOI}{translate key="plugins.pubIds.doi.readerDisplayName"}{/capture}
+						{translate key="semicolon" label=$translatedDOI}
+					<span class="value">
+						<a href="{$doiUrl}">
+							{$doiUrl}
+						</a>
+					</span>
+				</div>
+			{/if}
+		{/foreach}
+
+		{if $preprint->getDatePublished()}
+			<div class="published">
+				{translate key="submission.dates" submitted=$preprint->getDateSubmitted()|date_format:$dateFormatShort published=$preprint->getDatePublished()|date_format:$dateFormatShort}
+			</div>
+		{/if}
+
+		<div class="downloads">
+			{translate key="publication.galley.downloads" downloads=$preprint->getTotalGalleyViews($primaryGenreIds)}
+		</div>
+
+		{if count($preprint->getPublishedPublications()) > 1}
+			<div class="versions">
+				{translate key="submission.numberOfVersions" numberOfVersions=count($preprint->getPublishedPublications())}
+			</div>
+		{/if}
+
+		{if !empty($preprint->getCurrentPublication()->getLocalizedData('keywords'))}
+		<div class="keywords">
+			<ul class="keyword_links">
+				{foreach name="keywords" from=$preprint->getCurrentPublication()->getLocalizedData('keywords') item="keyword"}
+					<li>{$keyword|escape}</li>
+				{/foreach}
+			</ul>
+		</div>
+		{/if}
+	</div>	
+
+	{if !$hideGalleys}
+		<ul class="galleys_links">
+			{foreach from=$preprint->getGalleys() item=galley}
+				{if $primaryGenreIds}
+					{assign var="file" value=$galley->getFile()}
+					{if !$galley->getRemoteUrl() && !($file && in_array($file->getGenreId(), $primaryGenreIds))}
+						{continue}
+					{/if}
+				{/if}
+				<li>
+					{assign var="hasPreprintAccess" value=$hasAccess}
+					{if $currentContext->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_OPEN}
+						{assign var="hasPreprintAccess" value=1}
+					{/if}
+					{include file="frontend/objects/galley_link.tpl" parent=$preprint labelledBy="preprint-{$preprint->getId()}" hasAccess=$hasPreprintAccess}
+				</li>
+			{/foreach}
+		</ul>
+	{/if}
+
+	{call_hook name="Templates::Archive::Preprint"}
+</div>
