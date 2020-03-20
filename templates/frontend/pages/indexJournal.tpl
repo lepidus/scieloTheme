@@ -59,7 +59,7 @@
     
 
 	{* Latest preprints *}
-	<div class="homepage_latest_preprints row">
+	<section class="homepage_latest_preprints">
 		<h1>{translate key="index.latestPreprints"}</h1>
 		<ul class="cmp_article_list articles">
 			{foreach from=$publishedSubmissions item="preprint"}
