@@ -34,8 +34,32 @@
     {* Knowledge listing *}
     {include file="frontend/components/knowledgeList.tpl"}
 
+	{* Slider da Scielo *}
+	{* <div class="row">
+		<div class="block releases">
+		<div class="col-md-12">
+			<h2>SciELO <span>{translate key="index.latestPreprints"}</span></h2>
+			<div class="slider" id="pressreleases"> *}
+			{* <a href="javascript:;" class="slide-back"><span class="glyphBtn arrowLeft"></span></a>
+			<a href="javascript:;" class="slide-next"><span class="glyphBtn arrowRight"></span></a> *}
+			{* <div class="slide-container">
+				<div class="slide-wrapper">
+				{foreach from=$publishedSubmissions item="preprint"}
+					<li>
+						{include file="frontend/objects/preprint_summary.tpl"}
+					</li>
+				{/foreach}
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		</div>
+	</div>  *}
+    
+
 	{* Latest preprints *}
-	<section class="homepage_latest_preprints">
+	<div class="homepage_latest_preprints row">
 		<h1>{translate key="index.latestPreprints"}</h1>
 		<ul class="cmp_article_list articles">
 			{foreach from=$publishedSubmissions item="preprint"}
