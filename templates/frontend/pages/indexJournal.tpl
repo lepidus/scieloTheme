@@ -60,8 +60,10 @@
 
 	{* Latest preprints *}
 	<section class="homepage_latest_preprints">
-		<h1>{translate key="index.latestPreprints"}</h1>
+		<h2>{translate key="index.latestPreprints"}</h2>
 		<ul class="cmp_article_list articles">
+
+			{include file="frontend/components/slider.tpl"}
 			{foreach from=$publishedSubmissions item="preprint"}
 				<li>
 					{include file="frontend/objects/preprint_summary.tpl"}
