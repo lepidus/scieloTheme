@@ -15,8 +15,8 @@
         <div class="levelMenu">
             <div class="col-md-10 col-sm-10 numbers">
                 <div class="col-md-3 col-sm-3">
-                    2
-                    <span>períodicos</span>
+                    100
+                    <span>preprints</span>
                 </div>
                 <div class="col-md-3 col-sm-3">
                     7

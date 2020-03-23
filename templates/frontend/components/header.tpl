@@ -36,7 +36,6 @@
 						<span>Open Menu</span>
 					</button>
 
-
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Menu
@@ -51,7 +50,7 @@
 					<div class="pkp_site_name">
 						<a href="{$homeUrl}" class="is_img">
 							<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
-							<small>Brasil</small>
+							<small>Preprints (Pilot)</small>
             				<span>Scientific Electronic Library Online</span>
 						</a>
 					{* {capture assign="homeUrl"}

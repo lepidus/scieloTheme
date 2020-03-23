@@ -24,6 +24,11 @@
 .pkp_site_name_wrapper {
 	height: @nav-menu-height;
 
+	.dropdown{
+		position: absolute;
+		z-index: 1001;
+	}
+
 	@media (min-width: @screen-desktop) {
 		height: auto;
 	}
@@ -51,6 +56,7 @@
 		padding-bottom: @base;
 
 		small{
+			left: 45%;
 			position: absolute;
 			font-size: 20px;
 			font-family: 'Arapey', serif;
@@ -81,6 +87,7 @@
 		display: inline-block;
 		padding-top: 5px;
 		padding-bottom: 5px;
+		width: 35%;
 
 		&:focus {
 			box-shadow: 0 0 1px @text-bg-base;
@@ -230,7 +237,7 @@
 
 		.is_img img {
 			max-height: 140px; // must match height - padding of .is_img
-			padding-left: @triple;
+			padding-left: @base;
 		}
 	}
 
