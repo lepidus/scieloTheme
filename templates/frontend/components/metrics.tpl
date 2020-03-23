@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="levelMenu">
-            <div class="col-md-10 col-sm-10 numbers">
+            <div class="col-md-12 col-sm-12 numbers">
                 <div class="col-md-3 col-sm-3">
                     100
                     <span>preprints</span>
@@ -30,19 +30,6 @@
                     345
                     <span>referências</span>
                 </div>
-            </div>
-            <div class="col-md-2 col-sm-2">
-                <ul>
-                    <li>
-                        <a href="#" target="_blank">Downloads</a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank">Citações</a>
-                    </li>
-                    <li>
-                        <a href="#" target="_blank">Outros indicadores</a>
-                    </li>
-                </ul>
             </div>
             <div class="clearfix"></div>
         </div>
