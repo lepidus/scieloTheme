@@ -6,7 +6,7 @@
     <div class="col-md-12 col-sm-12 metrics">
         <div class="row">
             <div class="col-md-6">
-            <h2>Brasil <span >em números | Métricas</span></h2>
+            <h2>SciELO Preprints | <span>{translate key="plugins.themes.scielo.option.metrics.option"}</span></h2>
             </div>
             <div class="col-md-6 right">
             <div class="datetime"><span id="date"></span></div>
