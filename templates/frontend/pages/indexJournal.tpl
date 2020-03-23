@@ -28,6 +28,15 @@
 	{* Search and category listing *}
 	{include file="frontend/components/archiveHeader.tpl"}
 
+	{* Server Description *}
+	{if $activeTheme->getOption('showDescriptionInServerIndex')}
+		<section class="homepage_about">
+			<a id="homepageAbout"></a>
+			<h2>{translate key="about.aboutContext"}</h2>
+			{$currentContext->getLocalizedData('description')}
+		</section>
+	{/if}
+
     {* Metrics *}
     {include file="frontend/components/metrics.tpl"}
 
@@ -72,15 +81,6 @@
 		</ul> 
 	</section>
 
-
-	{* Server Description *}
-	{if $activeTheme->getOption('showDescriptionInServerIndex')}
-		<section class="homepage_about">
-			<a id="homepageAbout"></a>
-			<h2>{translate key="about.aboutContext"}</h2>
-			{$currentContext->getLocalizedData('description')}
-		</section>
-	{/if}
 
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}

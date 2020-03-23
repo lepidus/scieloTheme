@@ -71,11 +71,6 @@ class ScieloThemePlugin extends ThemePlugin {
 			'default' => 'notoSans',
 		]);
 
-		$this->addOption('baseColour', 'FieldColor', [
-			'label' => __('plugins.themes.scielo.option.colour.label'),
-			'description' => __('plugins.themes.scielo.option.colour.description'),
-			'default' => '#1E6292',
-		]);
 
 		$this->addOption('showDescriptionInServerIndex', 'FieldOptions', [
 			'label' => __('manager.setup.contextSummary'),

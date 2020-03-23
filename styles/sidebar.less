@@ -10,18 +10,17 @@
  */
 
 .pkp_block {
-	padding: @triple @double;
-	font-size: @font-base;
-	line-height: @line-base;
+	font-size: @font-sml;
+	line-height: @line-sml;
+	padding: 0px;
 
 	.title {
 		display: block;
-		margin-bottom: @base;
-		font-family: @font-heading;
+		margin-top: @base;
+		margin-bottom: @half;
 		font-size: @font-bump;
-		font-weight: @bold;
 		line-height: @line-bump;
-		color: @text-light;
+		color: #212529;
 	}
 
 	.content {
@@ -30,8 +29,8 @@
 			&:extend(.pkp_unstyled_list);
 
 			li {
-				line-height: @line-base;
-				padding: @half 0;
+				line-height: @line-sml+1;
+				padding: 2px 0;
 			}
 		}
 
@@ -53,7 +52,7 @@
 	}
 
 	@media(min-width: @screen-desktop) {
-		padding: @triple;
+		padding: 0px;
 	}
 }
 

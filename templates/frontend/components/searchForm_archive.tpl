@@ -25,16 +25,16 @@
             <div class="input-group col-md-12 col-sm-12">
                 <div class="form-textarea">
                     {block name=searchQueryFrontpage}
-                        <textarea name="query" placeholder="Entre uma ou mais palavras" value="{$searchQuery|escape}" type="text" rows="1" class="form-control" aria-label="{translate|escape key="common.searchQuery"}"></textarea>
+                        <textarea name="query" placeholder={translate key="search.SearchFor"} value="{$searchQuery|escape}" type="text" rows="1" class="form-control" aria-label="{translate|escape key="common.searchQuery"}"></textarea>
                     {/block}
                 </div>
 
                 <div class="selectBox index">
                     <select name="index[]">
-                        <option value="">Todos os índices</option>
-                        <option value="year_cluster">Ano</option>
-                        <option value="au">Autor</option>
-                        <option value="ti">Título</option>
+                        <option value="">{translate key="search.advancedFilters"}</option>
+                        <option value="year_cluster">{translate key="common.year"}</option>
+                        <option value="au">{translate key="navigation.browseByAuthor"}</option>
+                        <option value="ti">{translate key="navigation.browseByTitle"}</option>
                     </select>
                 </div>
             </div>
