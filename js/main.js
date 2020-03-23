@@ -110,7 +110,7 @@
 			return;
 		}
 
-		headerSearchForm.addClass('is_open');
+		headerhomepage_latest_preprintsSearchForm.addClass('is_open');
 		setTimeout(function() {
 			headerSearchForm.find('input[type="text"]').focus();
 		},200);
