@@ -22,8 +22,9 @@
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
 {if !$pageTitleTranslated}{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}{/if}
 {include file="frontend/components/headerHead.tpl"}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <body class="pkp_page_{$requestedPage|escape|default:"index"} pkp_op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}" dir="{$currentLocaleLangDir|escape|default:"ltr"}">
-
+	
 	<div class="pkp_structure_page">
 
 		{* Header *}
@@ -34,6 +35,19 @@
 					<button class="pkp_site_nav_toggle">
 						<span>Open Menu</span>
 					</button>
+
+
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Menu
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<button class="dropdown-item" type="button">Action</button>
+							<button class="dropdown-item" type="button">Another action</button>
+							<button class="dropdown-item" type="button">Something else here</button>
+						</div>
+					</div>
+					
 					<div class="pkp_site_name">
 						<a href="{$homeUrl}" class="is_img">
 							<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
@@ -86,9 +100,9 @@
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
 					{* Search form *}
-					{if $currentContext}
+					{* {if $currentContext}
 						{include file="frontend/components/searchForm_simple.tpl" className="pkp_search_mobile"}
-					{/if}
+					{/if} *}
 				</nav>
 			</div><!-- .pkp_head_wrapper -->
 			
