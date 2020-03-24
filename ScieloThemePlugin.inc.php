@@ -82,17 +82,17 @@ class ScieloThemePlugin extends ThemePlugin {
 			],
 			'default' => false,
 		]);
-		$this->addOption('useHomepageImageAsHeader', 'FieldOptions', [
-			'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.label'),
-			'description' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.description'),
-				'options' => [
-				[
-					'value' => true,
-					'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.option')
-				],
-			],
-			'default' => false,
-		]);
+		// $this->addOption('useHomepageImageAsHeader', 'FieldOptions', [
+		// 	'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.label'),
+		// 	'description' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.description'),
+		// 		'options' => [
+		// 		[
+		// 			'value' => true,
+		// 			'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.option')
+		// 		],
+		// 	],
+		// 	'default' => false,
+		// ]);
 
 		// Load primary stylesheet
 		$this->addStyle('stylesheet', 'styles/index.less');
