@@ -24,17 +24,6 @@
 .pkp_site_name_wrapper {
 	height: @nav-menu-height;
 
-	.dropdown{
-		position: absolute;
-		z-index: 1001;
-
-		.btn{
-			color: @text-light;
-			background-color: transparent;
-			border-color: transparent;
-		}
-	}
-
 	@media (min-width: @screen-desktop) {
 		height: auto;
 	}
@@ -358,14 +347,14 @@
 				padding: @pkp_nav_primary_row_el_padding 0
 					(@pkp_nav_primary_row_el_padding - 2); // -2 to account for border size
 				border-bottom: 2px solid transparent;
-				color: @text-bg-base;
+				color: @text-light;
 				text-decoration: none;
 
 				&:hover,
 				&:focus {
-					color: @text-bg-base;
+					color: @text-light;
 					outline: 0;
-					border-color: @text-bg-base;
+					border-color:@text-light;
 				}
 			}
 

@@ -1,5 +1,5 @@
 /**
- * @file plugins/themes/default/styles/sidebar.less
+ * @file plugins/themes/scielo/styles/sidebar.less
  *
  * Copyright (c) 2014-2020 Simon Fraser University
  * Copyright (c) 2003-2020 John Willinsky
@@ -9,18 +9,19 @@
  *
  */
 
-.pkp_block {
-	font-size: @font-sml;
-	line-height: @line-sml;
-	padding: 0px;
+ .pkp_block {
+	padding: @triple @double;
+	font-size: @font-base;
+	line-height: @line-base;
 
 	.title {
 		display: block;
-		margin-top: @base;
-		margin-bottom: @half;
+		margin-bottom: @base;
+		font-family: @font-heading;
 		font-size: @font-bump;
+		font-weight: @bold;
 		line-height: @line-bump;
-		color: #212529;
+		color: @text-light;
 	}
 
 	.content {
@@ -29,8 +30,8 @@
 			&:extend(.pkp_unstyled_list);
 
 			li {
-				line-height: @line-sml+1;
-				padding: 2px 0;
+				line-height: @line-base;
+				padding: @half 0;
 			}
 		}
 
@@ -52,7 +53,7 @@
 	}
 
 	@media(min-width: @screen-desktop) {
-		padding: 0px;
+		padding: @triple;
 	}
 }
 

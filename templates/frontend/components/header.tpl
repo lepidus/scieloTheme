@@ -34,54 +34,14 @@
 				<div class="pkp_site_name_wrapper">
 					<button class="pkp_site_nav_toggle">
 						<span>Open Menu</span>
-					</button>
-
-					<div class="dropdown">
-						<button class="btn btn-secondary dropdown-toggle" icon="" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Menu
-						</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-							<a class="dropdown-item" target="_blank" href="http://analytics.scielo.org">{translate key="plugins.themes.scielo.option.metrics.option"}</a>
-							<a class="dropdown-item" target="_blank" href="//www.scielo.org">{translate key="plugins.themes.scielo.option.colectionsAndThematics"}</a>
-							<a class="dropdown-item" target="_blank" href="//blog.scielo.org">Blog SciELO</a>
-							{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
-							{if $sidebarCode}
-							<button class="dropdown-item" type="button">{$sidebarCode}</button>
-							{/if}
-						</div>
-					</div>
-					
+					</button>	
+				
 					<div class="pkp_site_name">
 						<a href="/index" class="is_img">
 							<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
 							<small>Preprints (Pilot)</small>
             				<span>Scientific Electronic Library Online</span>
 						</a>
-					{* {capture assign="homeUrl"}
-						{if $currentContext && $multipleContexts}
-							{url page="index" router=$smarty.const.ROUTE_PAGE}
-						{else}
-							{url context="index" router=$smarty.const.ROUTE_PAGE}
-						{/if}
-					{/capture}
-					{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-						<a href="{$homeUrl}" class="is_img">
-							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if} />
-						</a>
-					{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
-						<a href="{$homeUrl}" class="is_text">{$displayPageHeaderTitle}</a>
-					{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_array($displayPageHeaderTitle)}
-						<a href="{$homeUrl}" class="is_img">
-							<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" alt="{$displayPageHeaderTitle.altText|escape}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" />
-						</a>
-					{else}
-						<a href="{$homeUrl}" class="is_img">
-							<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						</a>
-					{/if}
-					</div>
-					{if !$requestedPage || $requestedPage === 'index'}
-						<h1 class="pkp_screen_reader">{$displayPageHeaderTitle|escape}</h1>
-					{/if} *}
 				</div>
 
 				{* Primary site navigation *}
@@ -93,19 +53,24 @@
 
 				<nav class="pkp_site_nav_menu" aria-label="{translate|escape key="common.navigation.site"}">
 					<a id="siteNav"></a>
-					{* <div class="pkp_navigation_primary_row">
-						<div class="pkp_navigation_primary_wrapper"> *}
+					<div class="pkp_navigation_primary_row">
+						<div class="pkp_navigation_primary_wrapper">
 							{* Primary navigation menu for current application *}
-							{* {$primaryMenu}
+							{$primaryMenu}
+
+							{* Search form
+							{if $currentContext}
+								{include file="frontend/components/searchForm_simple.tpl" className="pkp_search_desktop"}
+							{/if} *}
 						</div>
-					</div> *}
+					</div>
 					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
 					{* Search form *}
-					{* {if $currentContext}
+					{if $currentContext}
 						{include file="frontend/components/searchForm_simple.tpl" className="pkp_search_mobile"}
-					{/if} *}
+					{/if}
 				</nav>
 			</div><!-- .pkp_head_wrapper -->
 			

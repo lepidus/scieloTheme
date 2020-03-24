@@ -15,7 +15,18 @@
 
 .pkp_structure_footer {
 	text-align: center;
+	
+	.container{
+		display: flex;
+		align-items: center;
+	}
+
+	.row{
+		display: inline-block;
+		align-items: center;
+	}
 }
+
 
 .pkp_footer_content {
 	padding: @triple;
@@ -24,7 +35,7 @@
 
 // OJS brand images in footer
 .pkp_brand_footer {
-	margin: 10px 0 10px;
+	margin: 0px 0 10px;
 	font-size: .8em;
 	.pkp_helpers_clear();
 	padding: @double;

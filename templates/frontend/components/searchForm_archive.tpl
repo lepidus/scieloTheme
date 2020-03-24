@@ -29,14 +29,14 @@
                     {/block}
                 </div>
 
-                <div class="selectBox index">
+                {* <div class="selectBox index">
                     <select name="index[]">
                         <option value="">{translate key="search.advancedFilters"}</option>
                         <option value="year_cluster">{translate key="common.year"}</option>
                         <option value="au">{translate key="navigation.browseByAuthor"}</option>
                         <option value="ti">{translate key="navigation.browseByTitle"}</option>
                     </select>
-                </div>
+                </div> *}
             </div>
         </div>
         <div class="col-md-2 col-sm-2">

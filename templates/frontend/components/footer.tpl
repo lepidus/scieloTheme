@@ -37,7 +37,15 @@
 				{$pageFooter}
 			</div>
 		{/if}
-
+		<div class="row">
+			<div class="container">
+				{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
+				{if $sidebarCode}
+					{$sidebarCode}
+				{/if}	
+			</div>	
+		</div>
+		
 		<div class="pkp_brand_footer" role="complementary">
 			<div class="container">
 				<div class="col-md-2 col-sm-2">
