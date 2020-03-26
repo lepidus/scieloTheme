@@ -6,110 +6,43 @@
 <link rel="stylesheet" href="/plugins/themes/scielo-theme/styles/owl.theme.default.css">
 <link rel="stylesheet" href="/plugins/themes/scielo-theme/styles/bootstrap.css">
 
+
 <div class="container mt-3">
     <div class="row">
         <div class="owl-carousel owl-theme" >
+            {foreach from=$publishedSubmissions item="preprint"}
             <div class="item">
                 <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
+                    {if $preprint->getCurrentPublication()->getLocalizedData('coverImage')}
+                        {assign var=preprintPath value=$preprint->getBestId()}
+                        <a {if $journal}href="{url journal=$journal->getPath() page="preprint" op="view" path=$preprintPath}"{else}href="{url page="preprint" op="view" path=$preprintPath}"{/if} class="file">
+                            {assign var="coverImage" value=$preprint->getCurrentPublication()->getLocalizedData('coverImage')}
+                            <img
+                                src="{$preprint->getCurrentPublication()->getLocalizedCoverImageUrl($preprint->getData('contextId'))|escape}"
+                                alt="{$coverImage.altText|escape|default:''}"
+                                class="card-img-top"
+                            >
+                        </a>
+                    {/if}
 
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
                     <div class="card-body">
-                        <h3>ksks puts</h3>
+                        {assign var=preprintPath value=$preprint->getBestId()}
+                        <a id="preprint-{$preprint->getId()}" {if $journal}href="{url journal=$journal->getPath() page="preprint" op="view" path=$preprintPath}"{else}href="{url page="preprint" op="view" path=$preprintPath}"{/if}>
+                            {$preprint->getLocalizedTitle()|strip_unsafe_html}
+                            {if $preprint->getLocalizedSubtitle()}
+                                <span class="subtitle">
+                                    {$preprint->getLocalizedSubtitle()|escape}
+                                </span>
+                            {/if}
+                        </a>
                         <button class="btn btn-primary btn-sm">Ler</button> 
                     </div>
                 </div>
             </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="item">
-                <div class="card">
-                    <img src="/plugins/themes/scielo-theme/styles/img/1.jpg" alt="img" class="card-img-top">
-                    <div class="card-body">
-                        <h3>ksks puts</h3>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
-                    </div>
-                </div>
-            </div>
+            {/foreach}
         </div>
     </div>
+    {* {call_hook name="Templates::Archive::Preprint"} *}
 </div> 
 
 <script src="https://code.jquery.com/jquery-3.1.0.js" crossorigin="anonymous"></script>
