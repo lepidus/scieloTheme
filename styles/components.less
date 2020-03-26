@@ -35,22 +35,23 @@
 		>ul{
 			padding: 0px @double;
 			margin: 0px;
-			text-align: center;
+			//text-align: center;
 			>li{				
 				display: inline-block;
 				text-align: center;
-				width: 16%;			
+				width: 30%;			
 				background: url(/plugins/themes/scielo-theme/styles/img/dashline.v.png) top right repeat-y;	
+				margin: @base;
+				text-align: center;
 
 				&:last-child {
 					background: none;
 				}
 
 				>a{
-					padding: 0 12px;
-					font-size: 1.1em;
+					font-size: @font-bump;
 					font-weight: bold;
-					line-height: 58px;
+					line-height: @line-bump;
 				}
 			}
 		}

@@ -25,7 +25,7 @@
             <div class="input-group col-md-12 col-sm-12">
                 <div class="form-textarea">
                     {block name=searchQueryFrontpage}
-                        <textarea name="query" placeholder={translate key="search.SearchFor"} value="{$searchQuery|escape}" type="text" rows="1" class="form-control" aria-label="{translate|escape key="common.searchQuery"}"></textarea>
+                        <input name="query" placeholder={translate key="search.SearchFor"} value="{$searchQuery|escape}" type="text" class="form-control" aria-label="{translate|escape key="common.searchQuery"}">
                     {/block}
                 </div>
 

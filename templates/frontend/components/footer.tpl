@@ -31,12 +31,6 @@
 	<a id="pkp_content_footer"></a>
 
 	<div class="pkp_structure_footer">
-
-		{if $pageFooter}
-			<div class="pkp_footer_content">
-				{$pageFooter}
-			</div>
-		{/if}
 		<div class="row">
 			<div class="container">
 				{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
@@ -45,16 +39,18 @@
 				{/if}	
 			</div>	
 		</div>
+
+		{if $pageFooter}
+			<div class="pkp_footer_content">
+				{$pageFooter}
+			</div>
+		{/if}
 		
 		<div class="pkp_brand_footer" role="complementary">
 			<div class="container">
 				<div class="col-md-2 col-sm-2">
-					<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />	
 				</div>
-				<div class="col-md-8 col-sm-9">
-					<strong>SciELO - Scientific Electronic Library Online</strong><br/>
-					Avenida Onze de Junho, 269 - Vila Clementino 04041-050 São Paulo SP - Brasil<br/>
-					Tel.: (55 11) 5083-3639/59 E-mail: scielo@scielo.org	
+				<div class="col-md-8 col-sm-9">					
 				</div>
 				<a href="{url page="about" op="aboutThisPublishingSystem"}">
 					<img alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
