@@ -47,11 +47,11 @@
 		<ul class="cmp_article_list articles">
 
 			{include file="frontend/components/slider.tpl"}
-			{foreach from=$publishedSubmissions item="preprint"}
+			{* {foreach from=$publishedSubmissions item="preprint"}
 				<li>
 					{include file="frontend/objects/preprint_summary.tpl"}
 				</li>
-			{/foreach}
+			{/foreach} *}
 		</ul> 
 	</section>
 
