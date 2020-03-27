@@ -35,7 +35,6 @@
                                 </span>
                             {/if}
                         </a>
-                        <button class="btn btn-primary btn-sm">Ler</button> 
                     </div>
                 </div>
             </div>
