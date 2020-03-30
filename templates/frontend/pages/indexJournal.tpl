@@ -17,15 +17,6 @@
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
-<script src='/plugins/themes/scielo-theme/js/rss.js' defer></script>
-
-<template>
-	<h2></h2>
-	<h3></h3>
-	<a href='#'></a>
-	<p></p>
-</template>
-
 <div class="page_index_journal">
 
 	{call_hook name="Templates::Index::journal"}
@@ -64,6 +55,13 @@
 		</ul> 
 	</section>
 
+	{* Feed do Blog da Scielo *}
+	<template>
+		<h2></h2>
+		<h3></h3>
+		<a href='#'></a>
+		<p></p>
+	</template>
 
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
@@ -105,3 +103,5 @@
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}
+
+<script src='/plugins/themes/scielo-theme/js/rss.js' defer></script>
