@@ -62,6 +62,8 @@
 		<a href='#'></a>
 		<p></p>
 	</template>
+	
+	{* <rssapp-carousel id="3nfMxeUl3PXn6equ"></rssapp-carousel><script src="https://widget.rss.app/v1/carousel.js" type="text/javascript" async></script> *}
 
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
@@ -90,7 +92,7 @@
 					</article>
 				{/if}
 			{/foreach}
-			</div><!-- .more -->
+			</div><!-- .more --> 
 		</section>
 	{/if}
 
