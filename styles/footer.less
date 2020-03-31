@@ -9,12 +9,12 @@
  */
 
  .pkp_structure_footer_wrapper {
-	background: @bg-shade;
+	background: @bg;
 }
-
 
 .pkp_structure_footer {
 	text-align: center;
+	background: url(/plugins/themes/scielo-theme/styles/img/dashline-foot.png) top left repeat-x;
 	
 	.container{
 		display: flex;
@@ -35,13 +35,13 @@
 
 // OJS brand images in footer
 .pkp_brand_footer {
-	margin: 0px 0 10px;
+	margin: 0px 0 @triple;
 	font-size: .8em;
 	.pkp_helpers_clear();
-	padding: @double;
+	padding: 0;
 
 	.container{
-		padding: 20px 0;
+		padding: 0;
 		display: flex;
 	 }
 
@@ -63,4 +63,3 @@
 		}
 	}
 }
-
