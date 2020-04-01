@@ -56,14 +56,9 @@
 	</section>
 
 	{* Feed do Blog da Scielo *}
-	<template>
-		<h2></h2>
-		<h3></h3>
-		<a href='#'></a>
-		<p></p>
-	</template>
-	
-	{* <rssapp-carousel id="3nfMxeUl3PXn6equ"></rssapp-carousel><script src="https://widget.rss.app/v1/carousel.js" type="text/javascript" async></script> *}
+
+	<div id="feed">
+	</div>
 
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
@@ -107,3 +102,12 @@
 {include file="frontend/components/footer.tpl"}
 
 <script src='/plugins/themes/scielo-theme/js/rss.js' defer></script>
+{* <script type="text/javascript" src="/plugins/themes/scielo-theme/js/jquery.jfeed.pack.js"></script>
+<script  src="/plugins/themes/scielo-theme/js/jquery.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js" crossorigin="anonymous"></script> *}
+
+
+
+
+
