@@ -58,10 +58,6 @@
 							{* Primary navigation menu for current application *}
 							{$primaryMenu}
 
-							{* Search form
-							{if $currentContext}
-								{include file="frontend/components/searchForm_simple.tpl" className="pkp_search_desktop"}
-							{/if} *}
 						</div>
 					</div>
 					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">

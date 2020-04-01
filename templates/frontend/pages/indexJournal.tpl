@@ -37,6 +37,13 @@
 		</section>
 	{/if}
 
+	{* Additional Homepage Content *}
+	{if $additionalHomeContent}
+		<div class="additional_content">
+			{$additionalHomeContent}
+		</div>
+	{/if}
+
     {* Knowledge listing *}
     {include file="frontend/components/knowledgeList.tpl"}
     
@@ -47,11 +54,7 @@
 		<ul class="cmp_article_list articles">
 
 			{include file="frontend/components/slider.tpl"}
-			{* {foreach from=$publishedSubmissions item="preprint"}
-				<li>
-					{include file="frontend/objects/preprint_summary.tpl"}
-				</li>
-			{/foreach} *}
+			
 		</ul> 
 	</section>
 
@@ -87,12 +90,7 @@
 		</section>
 	{/if}
 
-	{* Additional Homepage Content *}
-	{if $additionalHomeContent}
-		<div class="additional_content">
-			{$additionalHomeContent}
-		</div>
-	{/if}
+	
 </div><!-- .page -->
 
 {include file="frontend/components/footer.tpl"}
