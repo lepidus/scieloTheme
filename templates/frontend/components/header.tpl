@@ -37,11 +37,34 @@
 					</button>	
 				
 					<div class="pkp_site_name">
-						<a href="/index" class="is_img">
-							<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
-							<small>Preprints (Pilot)</small>
-            				<span>Scientific Electronic Library Online</span>
+						{capture assign="homeUrl"}
+							{if $currentContext && $multipleContexts}
+								{url page="index" router=$smarty.const.ROUTE_PAGE}
+							{else}
+								{url context="index" router=$smarty.const.ROUTE_PAGE}
+							{/if}
+						{/capture}
+						{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+						<a href="{$homeUrl}" class="is_img">
+							<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if} />
 						</a>
+						{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
+							<a href={$homeUrl} class="is_img">
+								<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
+								<small>Preprints (Pilot)</small>
+								<span>Scientific Electronic Library Online</span>
+							</a> 
+						{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_array($displayPageHeaderTitle)}
+							<a href="{$homeUrl}" class="is_img">
+								<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" alt="{$displayPageHeaderTitle.altText|escape}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" />
+							</a>
+						{else}
+							{* Header adicionada, aka a nossa *}	
+							<a href="{$homeUrl}" class="is_img">
+								<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
+							</a>
+						{/if}
+						
 				</div>
 
 				{* Primary site navigation *}
