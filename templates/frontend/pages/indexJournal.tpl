@@ -44,6 +44,10 @@
 		</div>
 	{/if}
 
+	{* Metrics *}
+    {include file="frontend/components/metrics.tpl"}
+
+
     {* Knowledge listing *}
     {include file="frontend/components/knowledgeList.tpl"}
     
