@@ -52,8 +52,12 @@
 	<section class="homepage_latest_preprints">
 		<h2>{translate key="index.latestPreprints"}</h2>
 		<ul class="cmp_article_list articles">
-
-			{include file="frontend/components/slider.tpl"}
+			{foreach from=$publishedSubmissions item="preprint"}
+				<li>
+					{include file="frontend/objects/preprint_summary.tpl"}
+				</li>
+			{/foreach}
+			{* {include file="frontend/components/slider.tpl"} *}
 			
 		</ul> 
 	</section>
