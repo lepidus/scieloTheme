@@ -9,12 +9,12 @@
 	height: @nav-menu-height;
 	border: 0;
 	background: none;
-	box-shadow: 1px 0 0 rgba(255,255,255,0.2), -1px 0 0 rgba(255,255,255,0.2);
+	box-shadow: 1px 0 0 @bg-shade, -1px 0 0 @bg-shade;
 	z-index: 999;
 
 	&:focus {
-		outline: 1px dotted @text-bg-base;
-		box-shadow: none;
+		outline: 1px dotted @bg-shade;
+		box-shadow: 0 0 1px @text-bg-base;
 	}
 
 	> span {
@@ -24,7 +24,7 @@
 		transform: translate(-50%, -50%);
 		width: 24px;
 		height: 19px;
-		border-bottom: @thickness solid @text-bg-base;
+		border-bottom: @thickness solid @bg-shade-dark;
 		text-indent: -9999px;
 		overflow: hidden;
 
@@ -35,7 +35,7 @@
 			left: 0;
 			width: 100%;
 			height: @thickness;
-			background: @text-bg-base;
+			background: @bg-shade-dark;
 		}
 
 		&:before {

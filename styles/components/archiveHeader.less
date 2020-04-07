@@ -6,6 +6,11 @@
 	margin-bottom: @triple;
 }
 
+@media (min-width: @screen-phone) {
+	padding: @base;
+	margin-bottom: @double;
+}
+
 .archiveHeader_search{
 	.pkp_search{
 		font-size: @font-bump;
@@ -50,7 +55,7 @@
 		}
 
 		.col-md-2{
-			width: 11%;
+			width: 50%;
 			float: left;
 			position: relative;
 			min-height: 1px;
@@ -59,7 +64,7 @@
 		.col-sm-2{
 			position: relative;
 			min-height: 1px;
-		}
+		}		
 	}
 	.col-md-10{
 		padding-left: 0px;
