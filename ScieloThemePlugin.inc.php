@@ -14,6 +14,7 @@
  */
 
 import('lib.pkp.classes.plugins.ThemePlugin');
+import('plugins.themes.scielo-theme.classes.MetricsDAO');
 
 class ScieloThemePlugin extends ThemePlugin {
 	/**
@@ -230,7 +231,25 @@ class ScieloThemePlugin extends ThemePlugin {
 		$this->addScript('default', 'js/main.js');
 
 		// Add navigation menu areas for this theme
-		$this->addMenuArea(array('primary', 'user'));
+        $this->addMenuArea(array('primary', 'user'));
+        
+        HookRegistry::register ('TemplateManager::display', array($this, 'loadTemplateData'));
+	}
+
+    public function register($category, $path, $mainContextId = NULL) {
+		$success = parent::register($category, $path, $mainContextId);
+		if ($success && $this->getEnabled($mainContextId)) {
+			$metricsDAO = new MetricsDAO();
+            DAORegistry::registerDAO('MetricsDAO', $metricsDAO);
+		}
+		return $success;
+    }
+
+    public function loadTemplateData($hookName, $args) {
+        $templateMgr = $args[0];
+
+		$metricsDAO = new MetricsDAO();
+		$templateMgr->assign('metricsDAO', $metricsDAO);
 	}
 
 	/**
