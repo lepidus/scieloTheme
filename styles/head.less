@@ -57,7 +57,7 @@
 			 font-family: 'Arapey', serif;
 			 color: #494641;
 			 font-style: italic;
-			 padding-left: 40px;
+			 padding-left: 20px;
 			 border-bottom: 1px solid #ccc;
 			 padding-bottom: 2px;
 			 padding-right: 5px;
@@ -66,11 +66,7 @@
 		 }
  
 		 span{
-			 display: block;
-			 font-size:@font-sml;
-			 font-family: 'Arapey', serif;
-			 color: #333;
-			 white-space: nowrap;
+			 display: none;
 		 }	
  
 		 &:focus {
@@ -80,7 +76,7 @@
  
 	 .is_img {
 		 display: inline-block;
-		 padding-top: 5px;
+		 padding-top: 4px;
 		 padding-bottom: 5px;
 		 width: 35%;
  
@@ -90,12 +86,12 @@
  
 		 img {
 			 display: block;
-			 max-height: @nav-menu-height - 10px;
+			 max-height: @nav-menu-height - 5px;
 			 max-width: 100%;
 			 width: auto;
 			 height: auto;
 			 z-index: 2;
-		 }
+		 }	 
 	 }
  
 	 .is_text {
@@ -126,8 +122,7 @@
 	 left: 0;
 	 padding: @base;
 	 z-index: 9999;
-	 border-bottom: 1px solid @bg-shade;
-	 border-top: 1px solid @bg-shade;
+	 
  
 	 .pkp_nav_list {
 		 padding-left: 0;
@@ -159,6 +154,7 @@
 		 position: absolute;
 		 top: 0;
 		 height: 0;
+		 
 	 }
  }
  
@@ -207,6 +203,7 @@
  // Total height - line height (divided by 2 since it will be applied to top and bottom)
  @pkp_nav_primary_row_el_padding: (@quadruple - @double) / 2;
  
+ // Desktop Display
  @media (min-width: @screen-desktop) {
 	 .pkp_head_wrapper {
 		 padding-top: @double; // Make room for the user nav at the top

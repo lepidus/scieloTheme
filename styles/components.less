@@ -45,6 +45,16 @@
 				margin: @base;
 				text-align: center;
 
+				@media( max-width: @screen-tablet ){
+					width: 40%;		
+				}
+
+				@media( max-width: @screen-phone ){
+					width: 100%;	
+					background: transparent;	
+					margin: @base 0;
+				}
+
 				&:last-child {
 					background: none;
 				}
