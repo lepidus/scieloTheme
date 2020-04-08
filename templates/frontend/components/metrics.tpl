@@ -2,9 +2,9 @@
  * templates/frontend/components/metrics.tpl
 *}
 
-{capture assign=countJournals}{$metricsDAO->getJournalCount()}{/capture}
-{capture assign=countPublications}{$metricsDAO->getPublicationCount()}{/capture}
-{capture assign=countCitations}{$metricsDAO->getCitationCount()}{/capture}
+{capture assign=countJournals}{$scieloMetricsDAO->getJournalCount()}{/capture}
+{capture assign=countPublications}{$scieloMetricsDAO->getPublicationCount()}{/capture}
+{capture assign=countCitations}{$scieloMetricsDAO->getCitationCount()}{/capture}
 
 <div class="row">
     <div class="col-md-12 col-sm-12 metrics">

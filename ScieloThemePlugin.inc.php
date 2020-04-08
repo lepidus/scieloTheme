@@ -14,7 +14,7 @@
  */
 
 import('lib.pkp.classes.plugins.ThemePlugin');
-import('plugins.themes.scielo-theme.classes.MetricsDAO');
+import('plugins.themes.scielo-theme.classes.ScieloMetricsDAO');
 
 class ScieloThemePlugin extends ThemePlugin {
 	/**
@@ -239,8 +239,8 @@ class ScieloThemePlugin extends ThemePlugin {
     public function register($category, $path, $mainContextId = NULL) {
 		$success = parent::register($category, $path, $mainContextId);
 		if ($success && $this->getEnabled($mainContextId)) {
-			$metricsDAO = new MetricsDAO();
-            DAORegistry::registerDAO('MetricsDAO', $metricsDAO);
+			$scieloMetricsDAO = new ScieloMetricsDAO();
+            DAORegistry::registerDAO('ScieloMetricsDAO', $scieloMetricsDAO);
 		}
 		return $success;
     }
@@ -248,8 +248,8 @@ class ScieloThemePlugin extends ThemePlugin {
     public function loadTemplateData($hookName, $args) {
         $templateMgr = $args[0];
 
-		$metricsDAO = new MetricsDAO();
-		$templateMgr->assign('metricsDAO', $metricsDAO);
+		$scieloMetricsDAO = new ScieloMetricsDAO();
+		$templateMgr->assign('scieloMetricsDAO', $scieloMetricsDAO);
 	}
 
 	/**

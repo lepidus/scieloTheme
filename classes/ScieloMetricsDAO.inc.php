@@ -11,7 +11,7 @@
 
 import('lib.pkp.classes.db.DAO');
 
-class MetricsDAO extends DAO {
+class ScieloMetricsDAO extends DAO {
     function getPublicationCount(){
         $result = $this->retrieve(
 			'SELECT COUNT(*) FROM publications WHERE status = 3'
