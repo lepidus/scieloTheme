@@ -2,11 +2,15 @@
  * templates/frontend/components/metrics.tpl
 *}
 
+{capture assign=countJournals}{$metricsDAO->getJournalCount()}{/capture}
+{capture assign=countPublications}{$metricsDAO->getPublicationCount()}{/capture}
+{capture assign=countCitations}{$metricsDAO->getCitationCount()}{/capture}
+
 <div class="row">
     <div class="col-md-12 col-sm-12 metrics">
         <div class="row">
             <div class="col-md-6">
-            <h2>Brasil <span >em números | Métricas</span></h2>
+            <h2>Métricas</span></h2>
             </div>
             <div class="col-md-6 right">
             <div class="datetime"><span id="date"></span></div>
@@ -15,15 +19,15 @@
         <div class="levelMenu">
             <div class="col-md-10 col-sm-10 numbers">
                 <div class="col-md-3 col-sm-3">
-                    2
-                    <span>períodicos</span>
+                    {$countJournals}
+                    <span>preprints</span>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    3
+                    {$countPublications}
                     <span>artigos</span>
                 </div>
                     <div class="col-md-3 col-sm-3">
-                    345
+                    {$countCitations}
                     <span>referências</span>
                 </div>
             </div>
