@@ -64,7 +64,7 @@
 								<img src="{$baseUrl}/templates/images/structure/logo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />
 							</a>
 						{/if}
-						
+					</div>	
 				</div>
 
 				{* Primary site navigation *}
