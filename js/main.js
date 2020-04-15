@@ -57,6 +57,15 @@
   		$('.pkp_site_nav_toggle').toggleClass('pkp_site_nav_toggle--transform');
 	});
 
+	//Collapse element
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+		coll[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+		});
+	}
 
 	// Register click handlers for the search panel
 	var headerSearchPanelIsClosing = false,

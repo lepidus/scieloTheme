@@ -244,7 +244,7 @@
 									{/if}
 								{/foreach}
 							</div>
-							<a href="#demo" data-toggle="collapse">{translate key="common.more"}...</a>
+							<a href="#demo" class="collapsible" data-toggle="collapse"></a>
 						{else}
 							{$publication->getData('citationsRaw')|escape|nl2br}
 						{/if}

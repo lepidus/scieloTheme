@@ -56,6 +56,22 @@
 				font-size: @font-bump;
 				font-weight: @bold;
 			}
+
+			a:hover, a:focus{
+				color: transparent;
+			}
+
+			.collapsible:after {
+				content: '\02795'; /* Unicode character for "plus" sign (+) */
+				font-size: 15px;
+				color: white;
+				float: left;
+				margin-bottom: @double;
+				}
+
+				.active:after {
+				content: "\2796"; /* Unicode character for "minus" sign (-) */
+				}
 		}
 
 		.sub_item {
