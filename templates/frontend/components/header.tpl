@@ -70,6 +70,10 @@
 						{/if}
 					</div>	
 				</div>
+				
+				
+				{* Language *}
+				{include file="frontend/components/language.tpl"}
 
 				{* Primary site navigation *}
 				{include file="frontend/components/skipLinks.tpl"}
@@ -90,6 +94,7 @@
 					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
+							
 					{* Search form *}
 					{if $currentContext}
 						{include file="frontend/components/searchForm_simple.tpl" className="pkp_search_mobile"}

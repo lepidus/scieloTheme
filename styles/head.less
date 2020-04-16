@@ -113,6 +113,10 @@
 	 padding-right: 0;
  }
  
+ .pkp_language{
+	 display: none;
+ }
+ 
  // Mobile navigation menu
  .pkp_site_nav_menu {
 	 position: absolute;
@@ -157,6 +161,7 @@
 		 
 	 }
  }
+
  
  .pkp_navigation_user {
  
@@ -445,7 +450,7 @@
 	 .pkp_navigation_user_wrapper {
 		 position: absolute;
 		 top: 0;
-		 left: 50%;
+		 right: 40%;
 		 transform: translateX(-50%);
 		 padding-left: @base;
 		 padding-right: @base;
@@ -455,6 +460,35 @@
 		 border-top: none;
 		 z-index: 1000;
 	 }
+
+	 .pkp_language {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 75%;
+		transform: translateX(-50%);
+		padding-left: @base;
+		padding-right: @base;
+		text-align: right;
+		padding-top: 0;
+		margin-top: 0;
+		border-top: none;
+		z-index: 1000;
+
+		ul{
+			padding: 0px;
+		}
+
+		a{
+			padding-right: @base;
+			font-size: @font-tiny;
+		}
+		img{
+			width: 10%;
+		}
+	}
+
+	 
  
 	 .pkp_navigation_user {
 		 text-align: right;
