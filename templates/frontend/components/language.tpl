@@ -18,14 +18,14 @@
 			<ul>
 				{foreach from=$languageToggleLocales item=localeName key=localeKey}
 					
-						<img
-							class="icon_flag"
-							href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.REQUEST_URI}"
-							src="/plugins/themes/scielo-theme/styles/img/language_flags/{$localeKey|escape}.png"
-						>
-						<a href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.REQUEST_URI}">
-							{$localeName}
-						</a>
+				<img
+					class="icon_flag"
+					href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.REQUEST_URI}"
+					src="/plugins/themes/scielo-theme/styles/img/language_flags/{$localeKey|escape}.png"
+				>
+				<a href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.REQUEST_URI}">
+					{$localeName}
+				</a>
 			
 				{/foreach}
 			</ul>
