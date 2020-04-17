@@ -234,6 +234,7 @@ class ScieloThemePlugin extends ThemePlugin {
         $this->addMenuArea(array('primary', 'user'));
         
         HookRegistry::register ('TemplateManager::display', array($this, 'loadTemplateData'));
+        HookRegistry::register('LoadHandler', array($this, 'changeHandlerPath'));
 	}
 
     public function register($category, $path, $mainContextId = NULL) {
@@ -243,6 +244,11 @@ class ScieloThemePlugin extends ThemePlugin {
             DAORegistry::registerDAO('ScieloMetricsDAO', $scieloMetricsDAO);
 		}
 		return $success;
+    }
+
+    public function changeHandlerPath($hookName, $args){
+        $sourceFile =& $args[2];
+        $sourceFile = 'plugins/themes/scielo-theme/pages/index/index.php';
     }
 
     public function loadTemplateData($hookName, $args) {
