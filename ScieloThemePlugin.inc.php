@@ -247,8 +247,10 @@ class ScieloThemePlugin extends ThemePlugin {
     }
 
     public function changeHandlerPath($hookName, $args){
-        $sourceFile =& $args[2];
-        $sourceFile = 'plugins/themes/scielo-theme/pages/index/index.php';
+        if($args[0] == '' || $args[0] == 'index'){
+            $sourceFile =& $args[2];
+            $sourceFile = 'plugins/themes/scielo-theme/pages/index/index.php';
+        }
     }
 
     public function loadTemplateData($hookName, $args) {
