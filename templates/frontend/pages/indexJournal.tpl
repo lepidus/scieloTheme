@@ -45,7 +45,7 @@
 	{/if}
 
 	{* Metrics *}
-    {include file="frontend/components/metrics.tpl"}
+    {*include file="frontend/components/metrics.tpl"*}
 
 
     {* Knowledge listing *}
