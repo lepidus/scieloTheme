@@ -230,6 +230,14 @@
  // Total height - line height (divided by 2 since it will be applied to top and bottom)
  @pkp_nav_primary_row_el_padding: (@quadruple - @double) / 2;
  
+ @media (max-width: 320px) {
+	.pkp_site_name{
+		.is_img {
+			width: 70%;
+		}	
+	}
+}
+
  // Desktop Display
  @media (min-width: @screen-desktop) {
 	 .pkp_head_wrapper {
