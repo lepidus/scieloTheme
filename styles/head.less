@@ -29,6 +29,7 @@
 	 }
  }
  
+ // Mobile
  // Site logo/name
  .pkp_site_name {
 	 position: absolute;
@@ -57,7 +58,7 @@
 			 font-family: 'Arapey', serif;
 			 color: #494641;
 			 font-style: italic;
-			 padding-left: 20px;
+			 padding-left: 15px;
 			 border-bottom: 1px solid #ccc;
 			 padding-bottom: 2px;
 			 padding-right: 5px;
@@ -78,7 +79,7 @@
 		 display: inline-block;
 		 padding-top: 4px;
 		 padding-bottom: 5px;
-		 width: 35%;
+		 width: 45%;
  
 		 &:focus {
 			 box-shadow: 0 0 1px @text-bg-base;
@@ -86,7 +87,7 @@
  
 		 img {
 			 display: block;
-			 max-height: @nav-menu-height - 5px;
+			 max-height: @nav-menu-height - 10px;
 			 max-width: 100%;
 			 width: auto;
 			 height: auto;
@@ -229,14 +230,15 @@
  // The padding to apply to top-level items in the navigation row
  // Total height - line height (divided by 2 since it will be applied to top and bottom)
  @pkp_nav_primary_row_el_padding: (@quadruple - @double) / 2;
- 
- @media (max-width: 320px) {
-	.pkp_site_name{
-		.is_img {
-			width: 70%;
+
+
+ @media (max-width: 320px){
+	 .pkp_site_name{
+		.is_img{
+			width: 55%;
 		}	
-	}
-}
+	 }
+ }
 
  // Desktop Display
  @media (min-width: @screen-desktop) {
@@ -259,22 +261,11 @@
 		 background: transparent;
  
 		 > a {
-			 padding-top: @base;
-			 padding-bottom: @base;
 	 
 			 small{
-				 left: 45%;
-				 position: absolute;
 				 font-size: 20px;
-				 font-family: 'Arapey', serif;
-				 color: #494641;
-				 font-style: italic;
 				 padding-left: 40px;
-				 border-bottom: 1px solid #ccc;
-				 padding-bottom: 2px;
-				 padding-right: 5px;
 				 margin-top: -47px;
-				 margin-left: -10px;
 			 }
 	 
 			 span{
@@ -284,10 +275,6 @@
 				 color: #333;
 				 white-space: nowrap;
 			 }	
-	 
-			 &:focus {
-				 outline: 0;
-			 }
 		 }
  
 		 .is_text {
@@ -296,10 +283,14 @@
 			 line-height: @line-header;
 		 }
  
-		 .is_img img {
+		 .is_img{
+			 width: 35%;
+
+		 	img {
 			 max-height: 140px; // must match height - padding of .is_img
 			 padding-left: @base;
-		 }
+		 	}
+		 } 
 	 }
  
 	 .pkp_site_nav_menu {
