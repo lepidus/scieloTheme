@@ -67,6 +67,3 @@ msgstr "Metrics"
 
 msgid "plugins.themes.scielo.option.colectionsAndThematics"
 msgstr "National and thematic collections"
-
-msgid "plugins.themes.scielo.option.seriesList"
-msgstr "Series list"

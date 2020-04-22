@@ -49,7 +49,7 @@
 
 
     {* Knowledge listing *}
-    {include file="frontend/components/knowledgeList.tpl"}
+    {* include file="frontend/components/knowledgeList.tpl" *}
     
 
 	{* Latest preprints *}
