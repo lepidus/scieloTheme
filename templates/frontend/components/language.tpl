@@ -20,9 +20,13 @@
                 {if strpos($localeName, " ") != ""}
                     {capture assign=localeName}{substr($localeName, 0, strpos($localeName, " "))}{/capture}
                 {/if}
-				<a href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.REQUEST_URI}">
-					{$localeName}
-				</a>
+				{assign var=locale_used value=AppLocale::getLocale()}
+
+				{if $localeKey != $locale_used}
+					<a href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.REQUEST_URI}">
+						{$localeName}
+					</a>
+				{/if}
 			
 				{/foreach}
 			</ul>
