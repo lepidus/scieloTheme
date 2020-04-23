@@ -51,21 +51,6 @@
 		 padding-top: @base;
 		 padding-bottom: @base;
  
-		 small{
-			 left: 45%;
-			 position: absolute;
-			 font-size: 10px;
-			 font-family: 'Arapey', serif;
-			 color: #494641;
-			 font-style: italic;
-			 padding-left: 15px;
-			 border-bottom: 1px solid #ccc;
-			 padding-bottom: 2px;
-			 padding-right: 5px;
-			 margin-top: -25px;
-			 margin-left: -10px;
-		 }
- 
 		 span{
 			 display: none;
 		 }	
@@ -79,11 +64,26 @@
 		 display: inline-block;
 		 padding-top: 4px;
 		 padding-bottom: 5px;
-		 width: 45%;
+		 width: 55%;
  
 		 &:focus {
 			 box-shadow: 0 0 1px @text-bg-base;
 		 }
+
+		 small{
+			left: 40%;
+			position: absolute;
+			font-size: 10px;
+			font-family: 'Arapey', serif;
+			color: #494641;
+			font-style: italic;
+			padding-left: 15px;
+			border-bottom: 1px solid #ccc;
+			padding-bottom: 2px;
+			padding-right: 5px;
+			margin-top: -25px;
+			margin-left: -10px;
+		}
  
 		 img {
 			 display: block;
@@ -114,11 +114,12 @@
 	 padding-right: 0;
  }
  
+ //Mobile Language Block
  .pkp_language{
 	display: block;
 	position: absolute;
 	top: 0;
-	left: 75%;
+	left: 50%;
 	transform: translateX(-50%);
 	padding-left: @base;
 	padding-right: @base;
@@ -127,7 +128,7 @@
 	margin-top: 0;
 	border-top: none;
 	z-index: 1000;
-	width: 50%;
+	width: 95%;
 
 	 ul{
 		padding: 0px;
@@ -232,11 +233,19 @@
  @pkp_nav_primary_row_el_padding: (@quadruple - @double) / 2;
 
 
- @media (max-width: 320px){
-	 .pkp_site_name{
-		.is_img{
-			width: 55%;
+ .pkp_site_name{
+	 .is_img{
+		 @media (width: 320px){
+			width: 60%;
 		}	
+
+		@media (width: @screen-tablet){
+			width: 36%;
+		}
+
+		@media (width: @screen-phone){
+			width: 45%;
+		}
 	 }
  }
 
@@ -260,14 +269,7 @@
 		 font-size: 2em; // Prevents extra vertical space after logos
 		 background: transparent;
  
-		 > a {
-	 
-			 small{
-				 font-size: 20px;
-				 padding-left: 40px;
-				 margin-top: -47px;
-			 }
-	 
+		 > a {	 
 			 span{
 				 display: block;
 				 font-size:16px;
@@ -284,13 +286,24 @@
 		 }
  
 		 .is_img{
-			 width: 35%;
+			width: 35%;
+
+			@media (width: @screen-lg-desktop){
+			   width: 25%;
+		   }
+
+			small{
+				left: 45%;
+				font-size: 20px;
+				padding-left: 40px;
+				margin-top: -47px;
+			}
 
 		 	img {
 			 max-height: 140px; // must match height - padding of .is_img
 			 padding-left: @base;
 		 	}
-		 } 
+		 }
 	 }
  
 	 .pkp_site_nav_menu {
