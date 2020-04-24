@@ -33,7 +33,7 @@
 			<div class="pkp_navigation" id="headerNavigationContainer">
 
 				{* Logo or site title *}
-				<div class="pkp_site_name">
+				<div class="pkp_site_name" style="background: #eaedee">
 					{if $currentContext && $multipleContexts}
 						{capture assign=homeUrl}{url journal="index" router=$smarty.const.ROUTE_PAGE}{/capture}
 					{else}
