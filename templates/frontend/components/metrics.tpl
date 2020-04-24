@@ -20,15 +20,15 @@
             <div class="col-md-10 col-sm-10 numbers">
                 <div class="col-md-3 col-sm-3">
                     {$countJournals}
-                    <span>preprints</span>
+                    <span>Preprints</span>
                 </div>
                 <div class="col-md-3 col-sm-3">
                     {$countPublications}
-                    <span>artigos</span>
+                    <span>Artigos</span>
                 </div>
                     <div class="col-md-3 col-sm-3">
                     {$countCitations}
-                    <span>referências</span>
+                    <span>Referências</span>
                 </div>
             </div>
             <div class="clearfix"></div>
