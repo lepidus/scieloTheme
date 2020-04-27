@@ -62,8 +62,12 @@
 				</li>
 			{/foreach}
 			{* {include file="frontend/components/slider.tpl"} *}
-			
-		</ul> 
+		</ul>
+        <div class="cmp_pagination">
+            <a href="{url router=$smarty.const.ROUTE_PAGE page="archive" path=2}" class="next">
+                {translate key="plugins.themes.scielo.indexToArchive"}
+            </a>
+        </div>
 	</section>
 
 

@@ -74,3 +74,6 @@ msgstr "Image d'arrière-plan de l'en-tête"
 
 msgid "plugins.themes.default.option.showDescriptionInServerIndex.option"
 msgstr "Afficher le sommaire du serveur sur la page d'accueil."
+
+msgid "plugins.themes.scielo.indexToArchive"
+msgstr "Toutes les preprints"

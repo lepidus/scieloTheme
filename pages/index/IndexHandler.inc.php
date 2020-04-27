@@ -1,94 +1,87 @@
 <?php
 
 /**
- * @file plugins/themes/scielo-theme/pages/index/IndexHandler.inc.php
+ * @file pages/archive/ArchiveHandler.inc.php
  *
- * @class IndexHandler
- * @ingroup pages_index
+ * Copyright (c) 2014-2020 Simon Fraser University
+ * Copyright (c) 2003-2020 John Willinsky
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief Handle site index requests.
+ * @class ArchiveHandler
+ * @ingroup pages_archive
+ *
+ * @brief Handle requests for archive functions.
  */
 
-import('lib.pkp.pages.index.PKPIndexHandler');
+import('classes.handler.Handler');
 
-class IndexHandler extends PKPIndexHandler {
-	//
-	// Public handler operations
-	//
+class IndexHandler extends Handler {
+
 	/**
-	 * If no journal is selected, display list of journals.
-	 * Otherwise, display the index page for the selected journal.
+	 * @copydoc PKPHandler::authorize()
+	 */
+	function authorize($request, &$args, $roleAssignments) {
+		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
+		$this->addPolicy(new ContextRequiredPolicy($request));
+
+		import('classes.security.authorization.OpsServerMustPublishPolicy');
+		$this->addPolicy(new OpsServerMustPublishPolicy($request));
+
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * Display the preprint archive listings
 	 * @param $args array
-	 * @param $request Request
+	 * @param $request PKPRequest
 	 */
 	function index($args, $request) {
-		$this->validate(null, $request);
-		$journal = $request->getJournal();
-
-		if (!$journal) {
-			$journal = $this->getTargetContext($request, $journalsCount);
-			if ($journal) {
-				// There's a target context but no journal in the current request. Redirect.
-				$request->redirect($journal->getPath());
-			}
-			if ($journalsCount === 0 && Validation::isSiteAdmin()) {
-				// No contexts created, and this is the admin.
-				$request->redirect(null, 'admin', 'contexts');
-			}
-		}
-
 		$this->setupTemplate($request);
-		$router = $request->getRouter();
+		$page = isset($args[0]) ? (int) $args[0] : 1;
 		$templateMgr = TemplateManager::getManager($request);
-		if ($journal) {
+		$context = $request->getContext();
 
-			// OPS: Series
-			$sectionDao = DAORegistry::getDAO('SectionDAO');
-			$series = $sectionDao->getByContextId($journal->getId());
+		// OPS: Series
+		$sectionDao = DAORegistry::getDAO('SectionDAO');
+		$series = $sectionDao->getByContextId($context->getId());
 
-			// Latest preprints
-			import('classes.submission.Submission');
-			$submissionService = Services::get('submission');
-			$params = array(
-				'contextId' => $journal->getId(),
-				'count' => '50',
-				'status' => STATUS_PUBLISHED,
-			);
-			$publishedSubmissions = $submissionService->getMany($params);
+        $count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
+		$offset = $page > 1 ? ($page - 1) * $count : 0;
 
-			// Assign header and content for home page
-			$templateMgr->assign(array(
-				'additionalHomeContent' => $journal->getLocalizedData('additionalHomeContent'),
-				'homepageImage' => $journal->getLocalizedData('homepageImage'),
-				'homepageImageAltText' => $journal->getLocalizedData('homepageImageAltText'),
-				'journalDescription' => $journal->getLocalizedData('description'),
-				'series' => $series,
-				'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
-				'publishedSubmissions' => $publishedSubmissions,
-			));
+		import('classes.submission.Submission');
+		$submissionService = Services::get('submission');
+		$params = array(
+			'contextId' => $context->getId(),
+			'count' => $count,
+			'offset' => $offset,
+			'status' => STATUS_PUBLISHED,
+		);
+		$publishedSubmissions = $submissionService->getMany($params);
+		$total = $submissionService->getMax($params);
 
-			$this->_setupAnnouncements($journal, $templateMgr);
+		$showingStart = $offset + 1;
+		$showingEnd = min($offset + $count, $offset + count($publishedSubmissions));
+		$nextPage = $total > $showingEnd ? $page + 1 : null;
+		$prevPage = $showingStart > 1 ? $page - 1 : null;
 
-			$templateMgr->display('frontend/pages/indexJournal.tpl');
-		} else {
-			$journalDao = DAORegistry::getDAO('JournalDAO'); /* @var $journalDao JournalDAO */
-			$site = $request->getSite();
+		$templateMgr->assign(array(
+			'series' => $series,
+			'publishedSubmissions' => $publishedSubmissions,
+			'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
+			'showingStart' => $showingStart,
+			'showingEnd' => $showingEnd,
+			'total' => $total,
+			'nextPage' => $nextPage,
+			'prevPage' => $prevPage,
+		));
 
-			if ($site->getRedirect() && ($journal = $journalDao->getById($site->getRedirect())) != null) {
-				$request->redirect($journal->getPath());
-			}
-
-			$templateMgr->assign(array(
-				'pageTitleTranslated' => $site->getLocalizedTitle(),
-				'about' => $site->getLocalizedAbout(),
-				'journalFilesPath' => $request->getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/journals/',
-				'journals' => $journalDao->getAll(true),
-				'site' => $site,
-			));
-			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
-			$templateMgr->display('frontend/pages/indexSite.tpl');
-		}
+		$templateMgr->display('frontend/pages/indexJournal.tpl');
 	}
+
+	function setupTemplate($request) {
+		parent::setupTemplate($request);
+		AppLocale::requireComponents(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_APP_EDITOR);
+	}
+
+
 }
-
-

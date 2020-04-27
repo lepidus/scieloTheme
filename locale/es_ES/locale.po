@@ -74,3 +74,6 @@ msgstr "Tema predeterminado"
 
 msgid "plugins.themes.scielo.option.showDescriptionInServerIndex.option"
 msgstr "Mostrar el resumen del servidor en la página de inicio."
+
+msgid "plugins.themes.scielo.indexToArchive"
+msgstr "Todos los preprints"

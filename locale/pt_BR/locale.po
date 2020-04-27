@@ -75,3 +75,6 @@ msgstr "Métricas"
 
 msgid "plugins.themes.scielo.option.colectionsAndThematics"
 msgstr "Coleções Nacionais e Temáticas"
+
+msgid "plugins.themes.scielo.indexToArchive"
+msgstr "Todos os preprints"
