@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file pages/archive/ArchiveHandler.inc.php
+ * @file plugins/themes/scielo-theme/pages/index/IndexHandler.inc.php
  *
  * Copyright (c) 2014-2020 Simon Fraser University
  * Copyright (c) 2003-2020 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @class ArchiveHandler
+ * @class IndexHandler
  * @ingroup pages_archive
  *
- * @brief Handle requests for archive functions.
+ * @brief Handle requests for index functions.
  */
 
 import('classes.handler.Handler');
@@ -47,7 +47,7 @@ class IndexHandler extends Handler {
 
         $count = $context->getData('itemsPerPage') ? $context->getData('itemsPerPage') : Config::getVar('interface', 'items_per_page');
 		$offset = $page > 1 ? ($page - 1) * $count : 0;
-
+        error_log($count);
 		import('classes.submission.Submission');
 		$submissionService = Services::get('submission');
 		$params = array(
