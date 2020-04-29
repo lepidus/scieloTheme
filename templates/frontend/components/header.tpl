@@ -6,7 +6,7 @@
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Common frontend site header.
- *
+ * 
  * @uses $isFullWidth bool Should this page be displayed without sidebars? This
  *       represents a page-level override, and doesn't indicate whether or not
  *       sidebars have been configured for thesite.
@@ -54,8 +54,7 @@
 						</a>
 						{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 							<a href={$homeUrl} class="is_img">
-								<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
-								<small>Preprints (Pilot)</small>
+								<img src="/plugins/themes/scielo-theme/styles/img/preprint_pilot.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />	
 								<span>Scientific Electronic Library Online</span>
 							</a> 
 						{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_array($displayPageHeaderTitle)}
