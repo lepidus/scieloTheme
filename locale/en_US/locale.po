@@ -70,3 +70,6 @@ msgstr "National and thematic collections"
 
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "All preprints"
+
+msgid "plugins.themes.scielo.msgCountingDownloads"
+msgstr " (as of yesterday)"

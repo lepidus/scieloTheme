@@ -77,3 +77,6 @@ msgstr "Mostrar el resumen del servidor en la página de inicio."
 
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "Todos los preprints"
+
+msgid "plugins.themes.scielo.msgCountingDownloads"
+msgstr " (hasta ayer)"

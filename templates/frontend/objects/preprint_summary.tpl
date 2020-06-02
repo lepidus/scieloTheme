@@ -77,9 +77,12 @@
 			</div>
 		{/if}
 
+		{if $preprint->getTotalGalleyViews($primaryGenreIds) > 0}
 		<div class="downloads">
-			{translate key="publication.galley.downloads" downloads=$preprint->getTotalGalleyViews($primaryGenreIds)}
+				{translate key="publication.galley.downloads" downloads=$preprint->getTotalGalleyViews($primaryGenreIds)}
+				{translate key="plugins.themes.scielo.msgCountingDownloads"}
 		</div>
+		{/if}
 
 		{if count($preprint->getPublishedPublications()) > 1}
 			<div class="versions">

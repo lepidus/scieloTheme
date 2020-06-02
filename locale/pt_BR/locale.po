@@ -78,3 +78,6 @@ msgstr "Coleções Nacionais e Temáticas"
 
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "Todos os preprints"
+
+msgid "plugins.themes.scielo.msgCountingDownloads"
+msgstr " (até ontem)"
