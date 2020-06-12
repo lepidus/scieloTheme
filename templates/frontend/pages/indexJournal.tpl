@@ -43,34 +43,7 @@
 			{$additionalHomeContent}
 		</div>
 	{/if}
-
-	{* Metrics *}
-    {*include file="frontend/components/metrics.tpl"*}
-
-
-    {* Knowledge listing *}
-    {* include file="frontend/components/knowledgeList.tpl" *}
-    
-
-	{* Latest preprints *}
-	<section class="homepage_latest_preprints">
-		<h2>{translate key="index.latestPreprints"}</h2>
-		<ul class="cmp_article_list articles">
-			{foreach from=$publishedSubmissions item="preprint"}
-				<li>
-					{include file="frontend/objects/preprint_summary.tpl"}
-				</li>
-			{/foreach}
-			{* {include file="frontend/components/slider.tpl"} *}
-		</ul>
-        <div class="cmp_pagination">
-            <a href="{url router=$smarty.const.ROUTE_PAGE page="archive" path=2}" class="next">
-                {translate key="plugins.themes.scielo.indexToArchive"}
-            </a>
-        </div>
-	</section>
-
-
+	
 	{* Announcements *}
 	{if $numAnnouncementsHomepage && $announcements|@count}
 		<section class="cmp_announcements highlight_first">
@@ -101,6 +74,32 @@
 			</div><!-- .more -->
 		</section>
 	{/if}
+
+	{* Metrics *}
+    {*include file="frontend/components/metrics.tpl"*}
+
+    {* Knowledge listing *}
+    {* include file="frontend/components/knowledgeList.tpl" *}
+    
+	{* Latest preprints *}
+	<section class="homepage_latest_preprints">
+		<h2>{translate key="index.latestPreprints"}</h2>
+		<ul class="cmp_article_list articles">
+			{foreach from=$publishedSubmissions item="preprint"}
+				<li>
+					{include file="frontend/objects/preprint_summary.tpl"}
+				</li>
+			{/foreach}
+			{* {include file="frontend/components/slider.tpl"} *}
+		</ul>
+        <div class="cmp_pagination">
+            <a href="{url router=$smarty.const.ROUTE_PAGE page="archive" path=2}" class="next">
+                {translate key="plugins.themes.scielo.indexToArchive"}
+            </a>
+        </div>
+	</section>
+
+
 
 	
 </div><!-- .page -->
