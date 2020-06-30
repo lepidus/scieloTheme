@@ -33,8 +33,8 @@
  // Site logo/name
  .pkp_site_name {
 	 position: absolute;
-	 left: @nav-menu-height;
-	 right: 0;
+	 left: @nav-menu-height/2;
+	 right: 0;	
 	 margin-top: 0;
 	 margin-bottom: 0;
 	 padding-left: @base;
@@ -73,7 +73,21 @@
 		 &:focus {
 			 box-shadow: 0 0 1px @text-bg-base;
 		 }
- 
+
+		 small{
+			left: auto;
+			position: absolute;
+			font-size: 10px;
+			font-family: 'Arapey', serif;
+			color: #494641;
+			font-style: italic;
+			padding-left: 2px;
+			border-bottom: 1px solid #ccc;
+			margin-top: -12px;
+			margin-left: 0;
+
+		}
+
 		 img {
 			 display: block;
 			 max-height: @nav-menu-height - 10px;
@@ -275,15 +289,23 @@
 		 }
  
 		 .is_img{
-			width: auto;
+			width: 27%;
 
-		// 	@media (width: @screen-lg-desktop){
-		// 	   width: 25%;
-		//    }
+			small{
+				position: absolute;
+				border-bottom: 1px solid #ccc;
+				padding-bottom: 2px;
+				padding-right: 5px;
+				margin-left: -10px;
+				left: 50%;
+				font-size: 20px;
+				padding-left: 40px;
+				margin-top: -47px;
+			}
 
 		 	img {
 			 max-height: 140px; // must match height - padding of .is_img
-			 padding-left: @base;
+			 padding-left: @base + @base;
 		 	}
 		 }
 	 }

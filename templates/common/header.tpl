@@ -45,7 +45,7 @@
 						</a>
 					{else}
 						<a href="{$homeUrl}" class="is_img">
-							<img src="/plugins/themes/scielo-theme/styles/img/preprint_pilot.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90">
+							<img src="/plugins/themes/scielo-theme/styles/img/preprints.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90">
 						</a>
 					{/if}
 				</div>
