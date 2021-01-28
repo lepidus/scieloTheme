@@ -94,12 +94,8 @@
 					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
 						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
-							
-					{* Search form *}
-					{if $currentContext}
-						{include file="frontend/components/searchForm_simple.tpl" className="pkp_search_mobile"}
-					{/if}
 				</nav>
+				
 			</div><!-- .pkp_head_wrapper -->
 			
 			{* Adiciona bootstrap *}
