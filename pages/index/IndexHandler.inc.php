@@ -58,6 +58,7 @@ class IndexHandler extends PKPIndexHandler {
 			$params = array(
 				'contextId' => $journal->getId(),
 				'count' => $count,
+				'orderBy' => 'datePublished',
 				'status' => STATUS_PUBLISHED,
 			);
 			$publishedSubmissions = $submissionService->getMany($params);
