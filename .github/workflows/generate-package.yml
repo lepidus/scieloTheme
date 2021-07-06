@@ -22,7 +22,7 @@ jobs:
           release=$(xmlstarlet sel -t -v 'version/release' version.xml)
           tag=${{ github.ref }}
           tag=${tag/refs\/tags\/v}
-          if [[ $release != $tag* ]]; then exit 1 fi
+          if [[ $release != $tag* ]]; then exit 1; fi
           date_version=$(xmlstarlet sel -t -v 'version/date' version.xml)
           current_date=$(date +'%Y-%m-%d')
           if [ $date_version != $current_date ]; then exit 1; fi
