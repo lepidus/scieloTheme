@@ -187,6 +187,7 @@ class ScieloThemePlugin extends ThemePlugin {
         
         HookRegistry::register ('TemplateManager::display', array($this, 'loadTemplateData'));
         HookRegistry::register('LoadHandler', array($this, 'changeHandlerPath'));
+		HookRegistry::register('Templates::Common::Sidebar', array($this, 'setSidebarToNotShowAtHome'));
 	}
 
     public function register($category, $path, $mainContextId = NULL) {
@@ -210,6 +211,23 @@ class ScieloThemePlugin extends ThemePlugin {
 
 		$scieloMetricsDAO = new ScieloMetricsDAO();
 		$templateMgr->assign('scieloMetricsDAO', $scieloMetricsDAO);
+	}
+
+	public function setSidebarToNotShowAtHome($hookName, $args){
+		$params =& $args[0];
+		$smarty =& $args[1];
+		$output =& $args[2];
+		
+		if($params['location'] == 'sidebar') {
+			$request = Application::get()->getRequest();
+			$requestPath = $request->getRequestPath();
+			$contextPath = $request->getContext()->getPath();
+			$endRequestPath = end(explode('/', $requestPath));
+
+			if($endRequestPath == $contextPath) {
+				return true;
+			}
+		}
 	}
 
 	/**

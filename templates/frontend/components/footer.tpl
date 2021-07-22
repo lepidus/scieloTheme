@@ -14,6 +14,16 @@
 
 	</div><!-- pkp_structure_main -->
 
+	{* Sidebars *}
+	{if empty($isFullWidth)}
+		{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar" location="sidebar"}{/capture}
+		{if $sidebarCode}
+			<div class="pkp_structure_sidebar left" role="complementary" aria-label="{translate|escape key="common.navigation.sidebar"}">
+				{$sidebarCode}
+			</div><!-- pkp_sidebar.left -->
+		{/if}
+	{/if}
+
 </div><!-- pkp_structure_content -->
 
 
@@ -22,14 +32,6 @@
 	<a id="pkp_content_footer"></a>
 
 	<div class="pkp_structure_footer">
-		<div class="row">
-			<div class="container">
-				{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
-				{if $sidebarCode}
-					{$sidebarCode}
-				{/if}	
-			</div>	
-		</div>
 
 		{if $pageFooter}
 			<div class="pkp_footer_content">

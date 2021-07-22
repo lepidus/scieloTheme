@@ -8,7 +8,7 @@
  * Common site sidebar menu -- language toggle.
  *}
 
-{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar"}{/capture}
+{capture assign="sidebarCode"}{call_hook name="Templates::Common::Sidebar" location="languageToggle"}{/capture}
 {if $sidebarCode}
 	{if $enableLanguageToggle}
 	
