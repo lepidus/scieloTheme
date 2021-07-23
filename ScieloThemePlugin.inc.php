@@ -221,10 +221,9 @@ class ScieloThemePlugin extends ThemePlugin {
 		if($params['location'] == 'sidebar') {
 			$request = Application::get()->getRequest();
 			$requestPath = $request->getRequestPath();
-			$contextPath = $request->getContext()->getPath();
-			$endRequestPath = end(explode('/', $requestPath));
-
-			if($endRequestPath == $contextPath) {
+			$patternPreprintView = "~preprint\/view\/\d+~";
+			
+			if(preg_match($patternPreprintView, $requestPath) == 0) {
 				return true;
 			}
 		}
