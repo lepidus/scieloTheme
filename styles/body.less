@@ -31,7 +31,6 @@ a {
 .pkp_navigation_primary_wrapper,
 .pkp_navigation_user,
 .pkp_search_mobile,
-.pkp_structure_content,
 .pkp_structure_footer {
 	.pkp_helpers_clear;
 	position: relative;
@@ -51,6 +50,28 @@ a {
 
 	@media( min-width: @screen-lg-desktop ) {
 		width: @screen-lg-desktop-container;
+	}
+}
+
+.pkp_structure_content {
+	.pkp_helpers_clear;
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	padding-left: @base;
+	padding-right: @base;
+
+	@media( min-width: @screen-tablet ) {
+		width: @screen-tablet-container;
+		padding: 0;
+	}
+
+	@media( min-width: @screen-desktop ) {
+		width: @screen-desktop-container + @sidebar-width;
+	}
+
+	@media( min-width: @screen-lg-desktop ) {
+		width: @screen-lg-desktop-container + @sidebar-width;
 	}
 }
 
