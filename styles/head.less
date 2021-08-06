@@ -125,11 +125,8 @@
 	position: absolute;
 	top: 0;
 	left: 50%;
-	transform: translateX(-50%);
-	padding-left: @base;
-	padding-right: @base;
+	padding: 0 @triple;
 	text-align: right;
-	padding-top: 0;
 	margin-top: 0;
 	border-top: none;
 	z-index: 1000;
@@ -140,7 +137,6 @@
 	}
 
 	a{
-		padding-right: @base;
 		font-size: @font-tiny - 2;
 		color: rgba(0,0,0,0.54);
 	}
@@ -502,18 +498,17 @@
 	}
 
 	.pkp_language {
-	left: 60%;
-	width: 50%;
+		width: 50%;
 
-	a{
-		font-size: @font-tiny;
-		color: rgba(0,0,0,0.54);
+		a{
+			font-size: @font-tiny;
+			color: rgba(0,0,0,0.54);
+		}
+		a:hover,
+		a:focus {
+			color: rgba(0,0,0,0.54);
+		}
 	}
-	a:hover,
-	a:focus {
-		color: rgba(0,0,0,0.54);
-	}
-}
 
 	
 
