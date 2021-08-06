@@ -185,7 +185,7 @@ class ScieloThemePlugin extends ThemePlugin {
 		// Add navigation menu areas for this theme
         $this->addMenuArea(array('primary', 'user'));
         
-        HookRegistry::register ('TemplateManager::display', array($this, 'loadTemplateData'));
+        HookRegistry::register('TemplateManager::display', array($this, 'loadTemplateData'));
         HookRegistry::register('LoadHandler', array($this, 'changeHandlerPath'));
 		HookRegistry::register('Templates::Common::Sidebar', array($this, 'setSidebarToNotShowAtHome'));
 	}
