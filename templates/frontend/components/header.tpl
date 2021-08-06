@@ -71,6 +71,9 @@
 					</div>	
 				</div>
 				
+				<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
+					{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
+				</div>
 				
 				{* Language *}
 				{include file="frontend/components/language.tpl"}
@@ -90,9 +93,6 @@
 							{$primaryMenu}
 
 						</div>
-					</div>
-					<div class="pkp_navigation_user_wrapper" id="navigationUserWrapper">
-						{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 					</div>
 				</nav>
 				
