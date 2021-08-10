@@ -44,11 +44,11 @@ a {
 	}
 
 	@media( min-width: @screen-desktop ) {
-		width: @screen-desktop-container;
+		width: @screen-desktop-container + @sidebar-width;
 	}
 
 	@media( min-width: @screen-lg-desktop ) {
-		width: @screen-lg-desktop-container;
+		width: @screen-lg-desktop-container + @sidebar-width;
 	}
 }
 
@@ -95,11 +95,11 @@ a {
 		}
 
 		@media( min-width: @screen-desktop ) {
-			width: @screen-desktop-container;
+			width: @screen-desktop-container + @sidebar-width;
 		}
 
 		@media( min-width: @screen-lg-desktop ) {
-			width: @screen-lg-desktop-container;
+			width: @screen-lg-desktop-container + @sidebar-width;
 		}
 	}
 }
@@ -176,8 +176,7 @@ a {
 
 	@media(min-width: @screen-desktop) {
 		float: none;
-		margin-left: auto;
-		margin-right: auto;
+		width: 100%;
 		margin-top: 0px;
 
 		// Aligns the left and right borders
