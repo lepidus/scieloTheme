@@ -29,8 +29,7 @@ a {
 // Page container widths
 .pkp_site_name_wrapper,
 .pkp_navigation_primary_wrapper,
-.pkp_search_mobile,
-.pkp_structure_footer {
+.pkp_search_mobile {
 	.pkp_helpers_clear;
 	position: relative;
 	width: 100%;
@@ -44,12 +43,41 @@ a {
 	}
 
 	@media( min-width: @screen-desktop ) {
-		width: @screen-desktop-container + @sidebar-width;
+		width: @screen-desktop-container + @sidebar-width
 	}
 
 	@media( min-width: @screen-lg-desktop ) {
-		width: @screen-lg-desktop-container + @sidebar-width;
+		width: @screen-lg-desktop-container;
 	}
+}
+
+.pkp_structure_footer {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	padding-left: @base;
+	padding-right: @base;
+
+	@media( min-width: @screen-tablet ) {
+		width: @screen-tablet-container;
+		padding: 0;
+	}
+
+	@media( min-width: @screen-desktop ) {
+		width: @screen-desktop
+	}
+
+	@media( min-width: @screen-lg-desktop ) {
+		width: @screen-lg-desktop-container;
+	}
+}
+
+.pkp_site_name_wrapper {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	padding-left: @base;
+	padding-right: @base;
 }
 
 .pkp_structure_content {
@@ -66,21 +94,22 @@ a {
 	}
 
 	@media( min-width: @screen-desktop ) {
-		width: @screen-desktop-container + @sidebar-width;
+		width: @screen-desktop;
 	}
 
 	@media( min-width: @screen-lg-desktop ) {
-		width: @screen-lg-desktop-container + @sidebar-width;
+		width: @screen-lg-desktop-container;
 	}
 }
 
 .has_site_logo {
 
+	
 	.pkp_site_name,
 	.pkp_navigation_primary_wrapper {
 		width: auto;
 	}
-
+	
 	.pkp_head_wrapper {
 		.pkp_helpers_clear;
 		position: relative;
@@ -95,11 +124,11 @@ a {
 		}
 
 		@media( min-width: @screen-desktop ) {
-			width: @screen-desktop-container + @sidebar-width;
+			width: @screen-desktop-container;
 		}
 
 		@media( min-width: @screen-lg-desktop ) {
-			width: @screen-lg-desktop-container + @sidebar-width;
+			width: @screen-lg-desktop-container;
 		}
 	}
 }
@@ -129,7 +158,6 @@ a {
 			left: 0;
 			bottom: 0;
 			width: 1px;
-			//background: @bg-border-color;
 		}
 
 		&:after {
@@ -152,7 +180,7 @@ a {
 	.pkp_structure_main {
 		float: left;
 		padding: 0 @triple @triple;
-		width: @screen-desktop-container;
+		width: auto;
 
 		&:after {
 			left: @screen-desktop-container;
@@ -163,7 +191,7 @@ a {
 @media( min-width: @screen-lg-desktop ) {
 
 	.pkp_structure_main {
-		width: @screen-lg-desktop-container;
+		width: auto;
 
 		&:after {
 			left: @screen-lg-desktop-container;
