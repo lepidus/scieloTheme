@@ -1,12 +1,12 @@
 /**
- * @file plugins/themes/default/styles/body.less
- *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
- * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
- *
- * @brief Classes for site-wide elements and layout scaffolding
- */
+* @file plugins/themes/default/styles/body.less
+*
+* Copyright (c) 2014-2020 Simon Fraser University
+* Copyright (c) 2003-2020 John Willinsky
+* Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+*
+* @brief Classes for site-wide elements and layout scaffolding
+*/
 
 body {
 	font-family: @font;
@@ -18,64 +18,38 @@ body {
 
 a {
 	color: @primary;
-
+    
 	&:hover,
 	&:focus {
 		color: @primary-lift;
 	}
 }
 
+// Lock in images so they don't run outside their container
+img {
+	max-width: 100%;
+	width: auto;
+	height: auto;
+}
 
-// Page container widths
+.pkp_structure_content,
 .pkp_site_name_wrapper,
 .pkp_navigation_primary_wrapper,
 .pkp_search_mobile,
 .pkp_structure_footer {
 	.pkp_helpers_clear;
-	position: relative;
-	width: 100%;
-	margin: 0 auto;
-	padding-left: @base;
-	padding-right: @base;
-
-	@media( min-width: @screen-tablet ) {
-		width: @screen-tablet-container;
-		padding: 0;
-	}
-
-	@media( min-width: @screen-desktop ) {
-		width: @screen-desktop-container + @sidebar-width;
-	}
-
-	@media( min-width: @screen-lg-desktop ) {
-		width: @screen-lg-desktop-container + @sidebar-width;
-	}
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: @base;
+    padding-right: @base;
 }
 
-.pkp_structure_content {
-	.pkp_helpers_clear;
-	position: relative;
-	width: 100%;
-	margin: 0 auto;
-	padding-left: @base;
-	padding-right: @base;
-
-	@media( min-width: @screen-tablet ) {
-		width: @screen-tablet-container;
-		padding: 0;
-	}
-
-	@media( min-width: @screen-desktop ) {
-		width: @screen-desktop-container + @sidebar-width;
-	}
-
-	@media( min-width: @screen-lg-desktop ) {
-		width: @screen-lg-desktop-container + @sidebar-width;
-	}
+.pkp_structure_main {
+	padding: @base;
 }
 
 .has_site_logo {
-
 	.pkp_site_name,
 	.pkp_navigation_primary_wrapper {
 		width: auto;
@@ -87,40 +61,27 @@ a {
 		width: 100%;
 		margin: 0 auto;
 		padding-right: @base;
-
-		@media( min-width: @screen-tablet ) {
-			width: @screen-tablet-container;
-			padding-left: 0;
-			padding-right: 0;
-		}
-
-		@media( min-width: @screen-desktop ) {
-			width: @screen-desktop-container + @sidebar-width;
-		}
-
-		@media( min-width: @screen-lg-desktop ) {
-			width: @screen-lg-desktop-container + @sidebar-width;
-		}
 	}
 }
 
-// Layout scaffold for content and sidebars
-.pkp_structure_main {
-	padding: @base;
-}
-
-@media( min-width: @screen-phone ) {
-
+@media (min-width: @screen-phone) {
 	.pkp_structure_main {
 		padding: @double;
 	}
 }
 
-@media( min-width: @screen-tablet ) {
-
+@media (min-width: @screen-tablet) {
+	.pkp_structure_content,
+    .pkp_site_name_wrapper,
+    .pkp_navigation_primary_wrapper,
+    .pkp_search_mobile,
+    .pkp_structure_footer {
+		width: @screen-tablet-container;
+		padding: 0;
+    }
+	
 	// Full-height borders wrapping primary content column
 	.pkp_structure_main {
-
 		&:before,
 		&:after {
 			content: '';
@@ -129,16 +90,35 @@ a {
 			left: 0;
 			bottom: 0;
 			width: 1px;
-			//background: @bg-border-color;
 		}
 
 		&:after {
 			left: @screen-tablet-container;
 		}
 	}
+
+	.has_site_logo .pkp_head_wrapper {
+		width: @screen-tablet-container;
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
-@media( min-width: @screen-desktop ) {
+@media (min-width: @screen-desktop) {
+    
+    .pkp_navigation_primary_wrapper,
+    .pkp_search_mobile {
+		width: @screen-desktop-container + @sidebar-width
+    }
+
+	.pkp_site_name_wrapper {
+		width: @screen-desktop-container
+	}
+
+    .pkp_structure_footer,
+    .pkp_structure_content {
+        width: @screen-desktop-container;
+    }
 
 	.pkp_structure_content {
 		padding-top: @triple;
@@ -152,29 +132,15 @@ a {
 	.pkp_structure_main {
 		float: left;
 		padding: 0 @triple @triple;
-		width: @screen-desktop-container;
+		width: auto;
 
 		&:after {
 			left: @screen-desktop-container;
 		}
 	}
-}
 
-@media( min-width: @screen-lg-desktop ) {
-
-	.pkp_structure_main {
-		width: @screen-lg-desktop-container;
-
-		&:after {
-			left: @screen-lg-desktop-container;
-		}
-	}
-}
-
-// Center the content panel when no sidebar is present
-.pkp_structure_main:first-child:last-child {
-
-	@media(min-width: @screen-desktop) {
+	// Center the content panel when no sidebar is present
+	.pkp_structure_main:first-child:last-child {
 		float: none;
 		width: 100%;
 		margin-top: 0px;
@@ -190,11 +156,30 @@ a {
 			right: @no-sidebar-margins;
 		}
 	}
+	.has_site_logo .pkp_head_wrapper{
+		width: @screen-desktop-container;
+	}
 }
 
-// Lock in images so they don't run outside their container
-img {
-	max-width: 100%;
-	width: auto;
-	height: auto;
+@media (min-width: @screen-lg-desktop) {
+    .pkp_site_name_wrapper,
+    .pkp_navigation_primary_wrapper,
+    .pkp_search_mobile {
+        width: @screen-lg-desktop-container;
+    }
+    
+    .pkp_structure_footer,
+    .pkp_structure_content	{
+        width: @screen-lg-desktop-container;
+    }
+
+	.pkp_structure_main {
+		width: auto;
+		&:after {
+			left: @screen-lg-desktop-container;
+		}
+	}
+	.has_site_logo .pkp_head_wrapper {
+			width: @screen-lg-desktop-container;
+	}
 }
