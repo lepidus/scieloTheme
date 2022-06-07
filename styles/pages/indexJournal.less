@@ -92,7 +92,22 @@
 
 			> .obj_announcement_summary {
 				float: left;
+				width: 100%;
+			}
+
+			> .obj_announcement_summary.withMore {
 				width: 65%;
+				
+				// Right border
+				&:before {
+					content: ' ';
+					position: absolute;
+					top: 0;
+					right: -1px;
+					width: 1px;
+					height: 100%;
+					border-left: @bg-border;
+				}
 			}
 
 			.more {
@@ -100,17 +115,6 @@
 				width: 35%;
 				padding-top: @double;
 				padding-bottom: @double;
-
-				// Left border
-				&:before {
-					content: ' ';
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 1px;
-					height: 100%;
-					border-left: @bg-border;
-				}
 			}
 		}
 
