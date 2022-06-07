@@ -93,17 +93,6 @@
 			> .obj_announcement_summary {
 				float: left;
 				width: 65%;
-
-				// Right border
-				&:before {
-					content: ' ';
-					position: absolute;
-					top: 0;
-					right: -1px;
-					width: 1px;
-					height: 100%;
-					border-left: @bg-border;
-				}
 			}
 
 			.more {
@@ -160,13 +149,11 @@
 		border-top: @bg-border;
 
 		@media (min-width: @screen-phone) {
-			padding-left: @double;
-			padding-right: @double;
+			padding: @double;
 		}
 
 		@media (min-width: @screen-desktop) {
-			padding-left: @triple;
-			padding-right: @triple;
+			padding: @triple;
 		}
 
 		> p:first-child {
