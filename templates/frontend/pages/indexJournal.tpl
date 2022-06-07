@@ -51,27 +51,27 @@
 			<h2>
 				{translate key="announcement.announcements"}
 			</h2>
-			{foreach name=announcements from=$announcements item=announcement}
-				{if $smarty.foreach.announcements.iteration > $numAnnouncementsHomepage}
-					{break}
-				{/if}
-				{if $smarty.foreach.announcements.iteration == 1}
-					{include file="frontend/objects/announcement_summary.tpl" heading="h3"}
-					<div class="more">
-				{else}
-					<article class="obj_announcement_summary">
-						<h4>
-							<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-								{$announcement->getLocalizedTitle()|escape}
-							</a>
-						</h4>
-						<div class="date">
-							{$announcement->getDatePosted()}
-						</div>
-					</article>
-				{/if}
-			{/foreach}
-			</div><!-- .more -->
+			{assign var=announcement value=$announcements[0]}
+			{include file="frontend/objects/announcement_summary.tpl" heading="h3"}
+			{if $announcements|@count > 1 and $numAnnouncementsHomepage > 1}
+				<div class="more">
+					{assign var=iter value=1}
+					{while $iter < $announcements|@count and $iter < $numAnnouncementsHomepage}
+						{assign var=announcement value=$announcements[$iter]}
+						<article class="obj_announcement_summary">
+							<h4>
+								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+									{$announcement->getLocalizedTitle()|escape}
+								</a>
+							</h4>
+							<div class="date">
+								{$announcement->getDatePosted()}
+							</div>
+						</article>
+						{assign var=iter value=$iter+1}
+					{/while}
+				</div>
+			{/if}
 		</section>
 	{/if}
 
