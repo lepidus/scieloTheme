@@ -1,4 +1,4 @@
-# Tema - Revista Scielo
+# Tema - Scielo Preprints
 
 Esse repositório se trata do tema usado pela [Scielo Preprints](https://preprints.scielo.org/index.php/scielo).
 
