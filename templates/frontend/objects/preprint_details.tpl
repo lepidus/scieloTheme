@@ -279,6 +279,7 @@
 							<li>
 								{include file="frontend/objects/galley_link.tpl" parent=$preprint publication=$publication galley=$galley}
 							</li>
+							{call_hook name="Hypothesis::annotationNumber" galley=$galley}
 						{/foreach}
 					</ul>
 				</div>
@@ -294,6 +295,7 @@
 					</ul>
 				</div>
 			{/if}
+
 			{if $publication->getData('datePublished')}
 			<div class="item published">
 				<section class="sub_item">

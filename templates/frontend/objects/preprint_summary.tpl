@@ -110,6 +110,7 @@
 					{/if}
 					{include file="frontend/objects/galley_link.tpl" parent=$preprint labelledBy="preprint-{$preprint->getId()}" hasAccess=$hasPreprintAccess}
 				</li>
+				{call_hook name="Hypothesis::annotationNumber" galley=$galley}
 			{/foreach}
 		</ul>
 	{/if}
