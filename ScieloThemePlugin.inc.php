@@ -14,7 +14,6 @@
  */
 
 import('lib.pkp.classes.plugins.ThemePlugin');
-import('plugins.themes.scielo-theme.classes.ScieloMetricsDAO');
 
 class ScieloThemePlugin extends ThemePlugin {
 	/**
@@ -185,7 +184,6 @@ class ScieloThemePlugin extends ThemePlugin {
 		// Add navigation menu areas for this theme
         $this->addMenuArea(array('primary', 'user'));
         
-        HookRegistry::register('TemplateManager::display', array($this, 'loadTemplateData'));
         HookRegistry::register('LoadHandler', array($this, 'changeHandlerPath'));
 		HookRegistry::register('Templates::Common::Sidebar', array($this, 'setSidebarToNotShowAtHome'));
 	}
@@ -193,8 +191,6 @@ class ScieloThemePlugin extends ThemePlugin {
     public function register($category, $path, $mainContextId = NULL) {
 		$success = parent::register($category, $path, $mainContextId);
 		if ($success && $this->getEnabled($mainContextId)) {
-			$scieloMetricsDAO = new ScieloMetricsDAO();
-            DAORegistry::registerDAO('ScieloMetricsDAO', $scieloMetricsDAO);
 		}
 		return $success;
     }
@@ -205,13 +201,6 @@ class ScieloThemePlugin extends ThemePlugin {
             $sourceFile = 'plugins/themes/scielo-theme/pages/index/index.php';
         }
     }
-
-    public function loadTemplateData($hookName, $args) {
-        $templateMgr = $args[0];
-
-		$scieloMetricsDAO = new ScieloMetricsDAO();
-		$templateMgr->assign('scieloMetricsDAO', $scieloMetricsDAO);
-	}
 
 	public function setSidebarToNotShowAtHome($hookName, $args){
 		$params =& $args[0];

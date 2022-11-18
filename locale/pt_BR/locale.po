@@ -70,9 +70,6 @@ msgstr "Mostre o resumo do periódico na página inicial."
 msgid "plugins.themes.scielo.option.showDescriptionInServerIndex.option"
 msgstr "Mostrar o índice do servidor na página inicial."
 
-msgid "plugins.themes.scielo.option.metrics.option"
-msgstr "Métricas"
-
 msgid "plugins.themes.scielo.option.colectionsAndThematics"
 msgstr "Coleções Nacionais e Temáticas"
 
