@@ -3,7 +3,7 @@
 /**
  * @defgroup plugins_themes_scielo Scielo theme plugin
  */
- 
+
 /**
  * @file plugins/themes/scielo-theme/index.php
  *
@@ -19,5 +19,3 @@
 require_once('ScieloThemePlugin.inc.php');
 
 return new ScieloThemePlugin();
-
-
