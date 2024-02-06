@@ -47,7 +47,7 @@
 
 		{if $showAuthor}
 		<div class="authors">
-			{$preprint->getAuthorString()|escape}
+			{$preprint->getCurrentPublication()->getAuthorString($authorUserGroups)|escape}
 		</div>
 		{/if}
 
