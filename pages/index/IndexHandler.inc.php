@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/themes/scielo-theme/pages/index/IndexHandler.inc.php
+ * @file plugins/themes/scieloTheme/pages/index/IndexHandler.inc.php
  *
  * Copyright (c) 2014-2020 Simon Fraser University
  * Copyright (c) 2003-2020 John Willinsky

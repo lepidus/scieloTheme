@@ -1,5 +1,5 @@
 variables:
-    PLUGIN_NAME: 'scielo-theme'
+    PLUGIN_NAME: 'scieloTheme'
 
 include:
   - project: 'documentacao-e-tarefas/modelosparaintegracaocontinua'

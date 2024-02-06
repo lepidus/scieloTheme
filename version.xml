@@ -10,7 +10,7 @@
   -->
 
 <version>
-	<application>scielo-theme</application>
+	<application>scieloTheme</application>
 	<type>plugins.themes</type>
 	<release>1.9.7</release>
 	<date>2022-11-22</date>

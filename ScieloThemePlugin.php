@@ -13,7 +13,7 @@
  * @brief Scielo theme
  */
 
-namespace APP\plugins\themes\scielo;
+namespace APP\plugins\themes\scieloTheme;
 
 use APP\core\Application;
 use APP\file\PublicFileManager;
