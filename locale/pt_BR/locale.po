@@ -18,7 +18,7 @@ msgid "plugins.themes.scielo.name"
 msgstr "Tema Scielo"
 
 msgid "plugins.themes.scielo.description"
-msgstr "Este tema implementa o tema da scielo."
+msgstr "Este tema implementa o tema da SciELO."
 
 msgid "plugins.themes.scielo.option.typography.label"
 msgstr "Fonte"
@@ -53,25 +53,19 @@ msgstr "Cor"
 msgid "plugins.themes.scielo.option.colour.description"
 msgstr "Escolha uma cor para o cabeçalho."
 
-msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.option"
-msgstr "Mostrar a imagem da página inicial como plano de fundo do cabeçalho."
+msgid "plugins.themes.scielo.option.showDescriptionInServerIndex.option"
+msgstr "Mostrar o índice do servidor na página inicial."
+
+msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.label"
+msgstr "Imagem de fundo do cabeçalho"
 
 msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.description"
 msgstr ""
 "Quando uma imagem da página inicial tiver sido carregada, exiba-a no plano "
 "de fundo do cabeçalho, em vez da posição usual na página inicial."
 
-msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.label"
-msgstr "Imagem de fundo do cabeçalho"
-
-msgid "plugins.themes.scielo.option.showDescriptionInJournalIndex.option"
-msgstr "Mostre o resumo do periódico na página inicial."
-
-msgid "plugins.themes.scielo.option.showDescriptionInServerIndex.option"
-msgstr "Mostrar o índice do servidor na página inicial."
-
-msgid "plugins.themes.scielo.option.colectionsAndThematics"
-msgstr "Coleções Nacionais e Temáticas"
+msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.option"
+msgstr "Mostrar a imagem da página inicial como plano de fundo do cabeçalho."
 
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "Todos os preprints"
