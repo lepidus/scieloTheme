@@ -1,3 +1,6 @@
+variables:
+    PLUGIN_NAME: 'scielo-theme'
+
 include:
   - project: 'documentacao-e-tarefas/modelosparaintegracaocontinua'
     ref: main

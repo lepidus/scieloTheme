@@ -2,14 +2,13 @@
 <!DOCTYPE version SYSTEM "../../../lib/pkp/dtd/pluginVersion.dtd">
 
 <!--
-  * plugins/themes/scielo-theme/version.xml
   *
-  * Copyright (c) 2014-2020 Simon Fraser University
-  * Copyright (c) 2003-2020 John Willinsky
-  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
+  * Copyright (c) 2020 - 2024 Lepidus Tecnologia
+  * Copyright (c) 2020 - 2024 SciELO
+  * Distributed under the GNU GPL v3. For full terms see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt.
   *
-  * Plugin version information.
   -->
+
 <version>
 	<application>scielo-theme</application>
 	<type>plugins.themes</type>
