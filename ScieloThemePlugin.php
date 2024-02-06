@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file plugins/themes/scieloTheme/ScieloThemePlugin.inc.php
+ * @file plugins/themes/scieloTheme/ScieloThemePlugin.php
  *
  * Copyright (c) 2020 - 2024 Lepidus Tecnologia
  * Copyright (c) 2020 - 2024 SciELO
@@ -20,6 +20,7 @@ use APP\file\PublicFileManager;
 use PKP\config\Config;
 use PKP\plugins\ThemePlugin;
 use PKP\session\SessionManager;
+use PKP\plugins\Hook;
 
 class ScieloThemePlugin extends ThemePlugin
 {
@@ -174,10 +175,10 @@ class ScieloThemePlugin extends ThemePlugin
         $this->addScript('default', 'js/main.js');
 
         // Add navigation menu areas for this theme
-        $this->addMenuArea(array('primary', 'user'));
+        $this->addMenuArea(['primary', 'user']);
 
-        HookRegistry::register('LoadHandler', array($this, 'changeHandlerPath'));
-        HookRegistry::register('Templates::Common::Sidebar', array($this, 'setSidebarToNotShowAtHome'));
+        Hook::add('LoadHandler', [$this, 'replaceIndexHandler']);
+        Hook::add('Templates::Common::Sidebar', [$this, 'setSidebarToNotShowAtHome']);
     }
 
     public function register($category, $path, $mainContextId = null)
@@ -188,12 +189,14 @@ class ScieloThemePlugin extends ThemePlugin
         return $success;
     }
 
-    public function changeHandlerPath($hookName, $args)
+    public function replaceIndexHandler($hookName, $params)
     {
-        if ($args[0] == '' || $args[0] == 'index') {
-            $sourceFile = & $args[2];
-            $sourceFile = 'plugins/themes/scieloTheme/pages/index/index.php';
+        $page = $params[0];
+        if ($page == '' or $page == 'index') {
+            define('HANDLER_CLASS', 'APP\plugins\themes\scieloTheme\pages\index\ScieloIndexHandler');
+            return true;
         }
+        return false;
     }
 
     public function setSidebarToNotShowAtHome($hookName, $args)
