@@ -1,8 +1,8 @@
 {**
- * templates/frontend/pages/archive.tpl
+ * templates/frontend/pages/preprints.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2021 Simon Fraser University
+ * Copyright (c) 2003-2021 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Display a list of preprints.
@@ -12,7 +12,7 @@
  * @uses $nextPage int The next page number
  * @uses $showingStart int The number of the first item on this page
  * @uses $showingEnd int The number of the last item on this page
- * @uses $total int Count of all published monographs
+ * @uses $total int Count of all published preprints
  *}
 {capture assign="pageTitle"}
 	{if $prevPage}
@@ -24,13 +24,14 @@
 {include file="frontend/components/header.tpl" pageTitleTranslated=$pageTitle}
 
 <div class="page page_issue_archive">
-
-	{* Search and category listing *}
-	{include file="frontend/components/archiveHeader.tpl"}
+	{include file="frontend/components/breadcrumbs.tpl" currentTitle=$pageTitle}
 
 	<h1>
 		{$pageTitle|escape}
 	</h1>
+
+	{* Search and category listing *}
+	{include file="frontend/components/archiveHeader.tpl"}
     
 	{* No preprints have been published *}
 	{if empty($publishedSubmissions)}
