@@ -12,8 +12,8 @@
 <version>
 	<application>scieloTheme</application>
 	<type>plugins.themes</type>
-	<release>1.9.7</release>
-	<date>2022-11-22</date>
+	<release>2.0.0</release>
+	<date>2024-02-08</date>
 	<lazy-load>1</lazy-load>
 	<class>ScieloThemePlugin</class>
 </version>
