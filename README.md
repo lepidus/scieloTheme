@@ -10,7 +10,7 @@ The latest release of this plugin is compatible with the following PKP applicati
 
 ## Plugin Download
 
-To download the plugin, go to the [Releases page](https://github.com/lepidus/scielo-theme/releases) and download the tar.gz package of the latest release compatible with your website.
+To download the plugin, go to the [Releases page](https://github.com/lepidus/scieloTheme/releases) and download the tar.gz package of the latest release compatible with your website.
 
 ## Installation
 

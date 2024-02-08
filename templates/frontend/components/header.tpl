@@ -54,7 +54,7 @@
 						</a>
 						{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 							<a href={$homeUrl} class="is_img">
-								<img src="/plugins/themes/scielo-theme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
+								<img src="/plugins/themes/scieloTheme/styles/img/logo-scielo.png" alt="{$applicationName|escape}" title="{$applicationName|escape}" width="180" height="90" />						
 								<small>Preprints</small>
 								<span>Scientific Electronic Library Online</span>
 							</a> 
