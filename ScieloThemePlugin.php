@@ -1,10 +1,10 @@
 <?php
 
 /**
- * @file plugins/themes/scielo-theme/ScieloThemePlugin.inc.php
+ * @file plugins/themes/scieloTheme/ScieloThemePlugin.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2020 - 2024 Lepidus Tecnologia
+ * Copyright (c) 2020 - 2024 SciELO
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ScieloThemePlugin
@@ -13,16 +13,20 @@
  * @brief Scielo theme
  */
 
-import('lib.pkp.classes.plugins.ThemePlugin');
+namespace APP\plugins\themes\scieloTheme;
+
+use APP\core\Application;
+use APP\file\PublicFileManager;
+use PKP\config\Config;
+use PKP\plugins\ThemePlugin;
+use PKP\session\SessionManager;
+use PKP\plugins\Hook;
 
 class ScieloThemePlugin extends ThemePlugin
 {
-    /**
-     * @copydoc ThemePlugin::isActive()
-     */
     public function isActive()
     {
-        if (defined('SESSION_DISABLE_INIT')) {
+        if (SessionManager::isDisabled()) {
             return true;
         }
         return parent::isActive();
@@ -36,8 +40,6 @@ class ScieloThemePlugin extends ThemePlugin
      */
     public function init()
     {
-        AppLocale::requireComponents(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_APP_MANAGER);
-
         // Register theme options
         $this->addOption('typography', 'FieldOptions', [
             'type' => 'radio',
@@ -87,17 +89,6 @@ class ScieloThemePlugin extends ThemePlugin
             ],
             'default' => false,
         ]);
-        // $this->addOption('useHomepageImageAsHeader', 'FieldOptions', [
-        // 	'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.label'),
-        // 	'description' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.description'),
-        // 		'options' => [
-        // 		[
-        // 			'value' => true,
-        // 			'label' => __('plugins.themes.scielo.option.useHomepageImageAsHeader.option')
-        // 		],
-        // 	],
-        // 	'default' => false,
-        // ]);
 
         // Load primary stylesheet
         $this->addStyle('stylesheet', 'styles/index.less');
@@ -133,6 +124,7 @@ class ScieloThemePlugin extends ThemePlugin
             $additionalLessVariables[] = '@bg-base:' . $this->getOption('baseColour') . ';';
             if (!$this->isColourDark($this->getOption('baseColour'))) {
                 $additionalLessVariables[] = '@text-bg-base:rgba(0,0,0,0.84);';
+                $additionalLessVariables[] = '@bg-base-border-color:rgba(0,0,0,0.2);';
             }
         }
 
@@ -152,12 +144,9 @@ class ScieloThemePlugin extends ThemePlugin
 
         // Get homepage image and use as header background if useAsHeader is true
         $context = Application::get()->getRequest()->getContext();
-        if ($context && $this->getOption('useHomepageImageAsHeader')) {
+        if ($context && $this->getOption('useHomepageImageAsHeader') && ($homepageImage = $context->getLocalizedData('homepageImage'))) {
             $publicFileManager = new PublicFileManager();
             $publicFilesDir = $request->getBaseUrl() . '/' . $publicFileManager->getContextFilesPath($context->getId());
-
-            $homepageImage = $context->getLocalizedData('homepageImage');
-
             $homepageImageUrl = $publicFilesDir . '/' . $homepageImage['uploadName'];
 
             $this->addStyle(
@@ -186,10 +175,10 @@ class ScieloThemePlugin extends ThemePlugin
         $this->addScript('default', 'js/main.js');
 
         // Add navigation menu areas for this theme
-        $this->addMenuArea(array('primary', 'user'));
+        $this->addMenuArea(['primary', 'user']);
 
-        HookRegistry::register('LoadHandler', array($this, 'changeHandlerPath'));
-        HookRegistry::register('Templates::Common::Sidebar', array($this, 'setSidebarToNotShowAtHome'));
+        Hook::add('LoadHandler', [$this, 'replaceIndexHandler']);
+        Hook::add('Templates::Common::Sidebar', [$this, 'setSidebarToNotShowAtHome']);
     }
 
     public function register($category, $path, $mainContextId = null)
@@ -200,19 +189,21 @@ class ScieloThemePlugin extends ThemePlugin
         return $success;
     }
 
-    public function changeHandlerPath($hookName, $args)
+    public function replaceIndexHandler($hookName, $params)
     {
-        if ($args[0] == '' || $args[0] == 'index') {
-            $sourceFile =& $args[2];
-            $sourceFile = 'plugins/themes/scielo-theme/pages/index/index.php';
+        $page = $params[0];
+        if ($page == '' or $page == 'index') {
+            define('HANDLER_CLASS', 'APP\plugins\themes\scieloTheme\pages\index\ScieloIndexHandler');
+            return true;
         }
+        return false;
     }
 
     public function setSidebarToNotShowAtHome($hookName, $args)
     {
-        $params =& $args[0];
-        $smarty =& $args[1];
-        $output =& $args[2];
+        $params = & $args[0];
+        $smarty = & $args[1];
+        $output = & $args[2];
 
         if ($params['location'] == 'sidebar') {
             $request = Application::get()->getRequest();
@@ -225,39 +216,21 @@ class ScieloThemePlugin extends ThemePlugin
         }
     }
 
-    /**
-     * Get the name of the settings file to be installed on new journal
-     * creation.
-     * @return string
-     */
     public function getContextSpecificPluginSettingsFile()
     {
         return $this->getPluginPath() . '/settings.xml';
     }
 
-    /**
-     * Get the name of the settings file to be installed site-wide when
-     * OJS is installed.
-     * @return string
-     */
     public function getInstallSitePluginSettingsFile()
     {
         return $this->getPluginPath() . '/settings.xml';
     }
 
-    /**
-     * Get the display name of this plugin
-     * @return string
-     */
     public function getDisplayName()
     {
         return __('plugins.themes.scielo.name');
     }
 
-    /**
-     * Get the description of this plugin
-     * @return string
-     */
     public function getDescription()
     {
         return __('plugins.themes.scielo.description');

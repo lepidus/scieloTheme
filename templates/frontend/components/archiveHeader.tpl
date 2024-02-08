@@ -8,10 +8,9 @@
  * Archive header containing a search form and a category listing
  *}
 
- <section class="archiveHeader">
+<section class="archiveHeader">
 	{* Search *}
 	<section class="archiveHeader_search">
 		{include file="frontend/components/searchForm_archive.tpl" className="pkp_search_desktop"}
 	</section>
-
 </section>

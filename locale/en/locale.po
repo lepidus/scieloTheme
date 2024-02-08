@@ -12,10 +12,10 @@ msgstr ""
 "Language: \n"
 
 msgid "plugins.themes.scielo.name"
-msgstr "Scielo Theme"
+msgstr "SciELO Theme"
 
 msgid "plugins.themes.scielo.description"
-msgstr "This theme implements the scielo theme."
+msgstr "This theme implements the SciELO Theme."
 
 msgid "plugins.themes.scielo.option.typography.label"
 msgstr "Typography"
@@ -61,9 +61,6 @@ msgstr "When a homepage image has been uploaded, display it in the background of
 
 msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.option"
 msgstr "Show the homepage image as the header background."
-
-msgid "plugins.themes.scielo.option.colectionsAndThematics"
-msgstr "National and thematic collections"
 
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "All preprints"
