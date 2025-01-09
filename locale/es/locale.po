@@ -77,3 +77,6 @@ msgstr "Todos los preprints"
 
 msgid "plugins.themes.scielo.msgCountingDownloads"
 msgstr " (hasta ayer)"
+
+msgid "plugins.themes.scielo.translation"
+msgstr "Traducción"
