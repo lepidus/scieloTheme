@@ -123,9 +123,12 @@
 						<li>
 							<span class="name">
 								{$author->getFullName()|escape}
-								<span class="translationBadge">
-									{translate key="plugins.themes.scielo.translation"}
-								</span>
+								
+								{if $author->getData('userGroupId') == $translatorsUserGroupId}
+									<span class="translationBadge">
+										{translate key="plugins.themes.scielo.translation"}
+									</span>
+								{/if}
 							</span>
 							{if $author->getLocalizedData('affiliation')}
 								<span class="affiliation">

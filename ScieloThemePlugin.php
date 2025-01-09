@@ -21,6 +21,8 @@ use PKP\config\Config;
 use PKP\plugins\ThemePlugin;
 use PKP\session\SessionManager;
 use PKP\plugins\Hook;
+use APP\template\TemplateManager;
+use APP\facades\Repo;
 
 class ScieloThemePlugin extends ThemePlugin
 {
@@ -179,6 +181,7 @@ class ScieloThemePlugin extends ThemePlugin
 
         Hook::add('LoadHandler', [$this, 'replaceIndexHandler']);
         Hook::add('Templates::Common::Sidebar', [$this, 'setSidebarToNotShowAtHome']);
+        Hook::add('PreprintHandler::view', [$this, 'addDataOnSubmissionView']);
     }
 
     public function register($category, $path, $mainContextId = null)
@@ -214,6 +217,34 @@ class ScieloThemePlugin extends ThemePlugin
                 return true;
             }
         }
+    }
+
+    public function addDataOnSubmissionView($hookName, $args)
+    {
+        $request = $args[0];
+        $templateMgr = TemplateManager::getManager($request);
+        $translatorsUserGroup = $this->getTranslatorsUserGroup($request->getContext()->getId());
+
+        if ($translatorsUserGroup) {
+            $templateMgr->assign(['translatorsUserGroupId' => $translatorsUserGroup->getId()]);
+        }
+    }
+
+    private function getTranslatorsUserGroup(int $contextId)
+    {
+        $contextUserGroups = Repo::userGroup()->getCollector()
+            ->filterByContextIds([$contextId])
+            ->getMany();
+
+        foreach ($contextUserGroups as $userGroup) {
+            $userGroupAbbrev = strtolower($userGroup->getData('abbrev', 'en'));
+
+            if ($userGroupAbbrev === 'tr') {
+                return $userGroup;
+            }
+        }
+
+        return null;
     }
 
     public function getContextSpecificPluginSettingsFile()
