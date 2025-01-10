@@ -70,3 +70,9 @@ msgstr " (as of yesterday)"
 
 msgid "plugins.themes.scielo.translation"
 msgstr "Translation"
+
+msgid "plugins.themes.scielo.translationOfDocument"
+msgstr "This is a translation of the following document:"
+
+msgid "plugins.themes.scielo.originalDocumentDoi"
+msgstr "Original document DOI"
