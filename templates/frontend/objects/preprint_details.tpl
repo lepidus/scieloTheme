@@ -98,6 +98,24 @@
 		</div>
 	{/if}
 
+	{if $publication->getData('originalDocumentDoi')}
+		<div class="cmp_notification notice">
+			{translate key="plugins.themes.scielo.translationOfDocument"}
+			<br><br>
+			<span>{$publication->getData('originalDocumentCitation')}</span>
+			<br><br>
+			{assign var="originalDocumentDoi" value=$publication->getData('originalDocumentDoi')|escape}
+			<strong>
+				{translate key="plugins.themes.scielo.originalDocumentDoi"}:
+			</strong>
+			<span>
+				<a href="https://doi.org/{$originalDocumentDoi}">
+					https://doi.org/{$originalDocumentDoi}
+				</a>
+			</span>
+		</div>
+	{/if}
+
 	{* Crossref requirements: The landing page must be labeled as not formally published (e.g. “preprint”, “unpublished manuscript”). This label must appear above the scroll. *}
 	<span class="preprint_label">{translate key="common.publication"}</span>
 	<span class="separator">{translate key="navigation.breadcrumbSeparator"}</span>
