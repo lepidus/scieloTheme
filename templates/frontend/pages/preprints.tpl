@@ -39,7 +39,7 @@
 
 	{* List preprints *}
 	{else}
-		<ul class="cmp_article_list articles">
+		<ul class="cmp_article_list preprints">
 			{foreach from=$publishedSubmissions item="preprint"}
 				<li>
 					{include file="frontend/objects/preprint_summary.tpl"}
@@ -49,12 +49,12 @@
 
 		{* Pagination *}
 		{if $prevPage > 1}
-			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="archive" path=$prevPage}{/capture}
+			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="preprints" path=$prevPage}{/capture}
 		{elseif $prevPage === 1}
-			{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="archive"}{/capture}
+			{capture assign=prevUrl}{url router=PKPApplication::ROUTE_PAGE page="preprints"}{/capture}
 		{/if}
 		{if $nextPage}
-			{capture assign=nextUrl}{url router=$smarty.const.ROUTE_PAGE page="archive" path=$nextPage}{/capture}
+			{capture assign=nextUrl}{url router=PKPApplication::ROUTE_PAGE page="preprints" path=$nextPage}{/capture}
 		{/if}
 		{include
 			file="frontend/components/pagination.tpl"
