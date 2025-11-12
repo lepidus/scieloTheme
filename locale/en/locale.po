@@ -62,6 +62,27 @@ msgstr "When a homepage image has been uploaded, display it in the background of
 msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.option"
 msgstr "Show the homepage image as the header background."
 
+msgid "plugins.themes.scielo.option.displayStats.label"
+msgstr "Usage statistics display options"
+
+msgid "plugins.themes.scielo.option.displayStats.none"
+msgstr "Do not display submission usage statistics chart for reader."
+
+msgid "plugins.themes.scielo.option.displayStats.bar"
+msgstr "Use bar type of the chart for usage statistics display."
+
+msgid "plugins.themes.scielo.option.displayStats.line"
+msgstr "Use line type of the chart for usage statistics display."
+
+msgid "plugins.themes.scielo.displayStats.monthInitials"
+msgstr "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+
+msgid "plugins.themes.scielo.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.scielo.displayStats.noStats"
+msgstr "Download data is not yet available."
+
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "All preprints"
 

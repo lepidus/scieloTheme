@@ -67,6 +67,27 @@ msgstr ""
 msgid "plugins.themes.scielo.option.useHomepageImageAsHeader.option"
 msgstr "Mostrar a imagem da página inicial como plano de fundo do cabeçalho."
 
+msgid "plugins.themes.scielo.option.displayStats.label"
+msgstr "Opções de exibição de estatísticas de uso"
+
+msgid "plugins.themes.scielo.option.displayStats.none"
+msgstr "Não exiba o gráfico de estatísticas de uso da submissão para o leitor."
+
+msgid "plugins.themes.scielo.option.displayStats.bar"
+msgstr "Use o tipo de barra do gráfico para exibição de estatísticas de uso."
+
+msgid "plugins.themes.scielo.option.displayStats.line"
+msgstr "Use o tipo de linha do gráfico para exibição de estatísticas de uso."
+
+msgid "plugins.themes.scielo.displayStats.monthInitials"
+msgstr "Jan Fev Mar Abr Mai Jun Jul Ago Set Out Nov Dez"
+
+msgid "plugins.themes.scielo.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.scielo.displayStats.noStats"
+msgstr "Os dados de download ainda não estão disponíveis."
+
 msgid "plugins.themes.scielo.indexToArchive"
 msgstr "Todos os preprints"
 
