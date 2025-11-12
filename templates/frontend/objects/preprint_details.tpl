@@ -212,6 +212,22 @@
 
 			{call_hook name="Templates::Preprint::Main"}
 
+			{* Usage statistics chart*}
+			{if $activeTheme && $activeTheme->getOption('displayStats') != 'none'}
+				{$activeTheme->displayUsageStatsGraph($preprint->getId())}
+				<section class="item downloads_chart">
+					<h2 class="label">
+						{translate key="plugins.themes.scielo.displayStats.downloads"}
+					</h2>
+					<div class="value">
+						<canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$preprint->getId()|escape}"></canvas>
+						<div class="usageStatsUnavailable" data-object-type="Submission" data-object-id="{$preprint->getId()|escape}">
+							{translate key="plugins.themes.scielo.displayStats.noStats"}
+						</div>
+					</div>
+				</section>
+			{/if}
+
 			{* Author biographies *}
 			{assign var="hasBiographies" value=0}
 			{foreach from=$publication->getData('authors') item=author}
@@ -248,7 +264,7 @@
 					{/foreach}
 				</section>
 			{/if}
- 
+
 			{* References *}
 			{if $parsedCitations || $publication->getData('citationsRaw')}
 				<section class="item references">

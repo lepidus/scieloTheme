@@ -79,8 +79,6 @@ class ScieloThemePlugin extends ThemePlugin
             ],
             'default' => 'notoSans',
         ]);
-
-
         $this->addOption('showDescriptionInServerIndex', 'FieldOptions', [
             'label' => __('manager.setup.contextSummary'),
                 'options' => [
@@ -90,6 +88,25 @@ class ScieloThemePlugin extends ThemePlugin
                 ],
             ],
             'default' => false,
+        ]);
+        $this->addOption('displayStats', 'FieldOptions', [
+            'type' => 'radio',
+            'label' => __('plugins.themes.scielo.option.displayStats.label'),
+            'options' => [
+                [
+                    'value' => 'none',
+                    'label' => __('plugins.themes.scielo.option.displayStats.none'),
+                ],
+                [
+                    'value' => 'bar',
+                    'label' => __('plugins.themes.scielo.option.displayStats.bar'),
+                ],
+                [
+                    'value' => 'line',
+                    'label' => __('plugins.themes.scielo.option.displayStats.line'),
+                ],
+            ],
+            'default' => 'none',
         ]);
 
         // Load primary stylesheet
@@ -245,6 +262,46 @@ class ScieloThemePlugin extends ThemePlugin
         }
 
         return null;
+    }
+
+    protected function loadChartJavascript(): void
+    {
+        $request = Application::get()->getRequest();
+        $templateMgr = TemplateManager::getManager($request);
+
+        $min = Config::getVar('general', 'enable_minified') ? '.min' : '';
+        $templateMgr->addJavaScript(
+            'chartJS',
+            $request->getBaseUrl() . '/lib/pkp/js/lib/Chart' . $min . '.js',
+            [
+                'contexts' => $this->getSubmissionViewContext(),
+            ]
+        );
+
+        $chartType = $this->getOption('displayStats');
+        $script_data = 'var pkpUsageStats = pkpUsageStats || {};';
+        $script_data .= 'pkpUsageStats.locale = pkpUsageStats.locale || {};';
+        $script_data .= 'pkpUsageStats.locale.months = ' . json_encode(explode(' ', __('plugins.themes.scielo.displayStats.monthInitials'))) . ';';
+        $script_data .= 'pkpUsageStats.config = pkpUsageStats.config || {};';
+        $script_data .= 'pkpUsageStats.config.chartType = ' . json_encode($chartType) . ';';
+
+        $templateMgr->addJavaScript(
+            'pkpUsageStatsConfig',
+            $script_data,
+            [
+                'inline' => true,
+                'contexts' => $this->getSubmissionViewContext(),
+            ]
+        );
+
+        // Register the JS which initializes the chart
+        $templateMgr->addJavaScript(
+            'usageStatsFrontend',
+            $request->getBaseUrl() . '/lib/pkp/js/usage-stats-chart.js',
+            [
+                'contexts' => $this->getSubmissionViewContext(),
+            ]
+        );
     }
 
     public function getContextSpecificPluginSettingsFile()
