@@ -14,7 +14,7 @@ describe('SciELO Theme - Plugin setup', function () {
         cy.get('#theme-button').click();
         cy.get('#theme-themePluginPath-control').select('SciELO Theme');
 
-        cy.contains('legend', 'Usage statistics display options');
+        cy.contains('Usage statistics display options');
         cy.get('button:visible:contains("Save")').click();
         cy.get('.pkpFormPage__status:contains("Saved")');
     });
