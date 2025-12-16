@@ -19,7 +19,7 @@ use APP\core\Application;
 use APP\file\PublicFileManager;
 use PKP\config\Config;
 use PKP\plugins\ThemePlugin;
-use PKP\session\SessionManager;
+use PKP\core\PKPSessionGuard;
 use PKP\plugins\Hook;
 use APP\template\TemplateManager;
 use APP\facades\Repo;
@@ -28,7 +28,7 @@ class ScieloThemePlugin extends ThemePlugin
 {
     public function isActive()
     {
-        if (SessionManager::isDisabled()) {
+        if (PKPSessionGuard::isSessionDisable()) {
             return true;
         }
         return parent::isActive();
@@ -212,8 +212,9 @@ class ScieloThemePlugin extends ThemePlugin
     public function replaceIndexHandler($hookName, $params)
     {
         $page = $params[0];
-        if ($page == '' or $page == 'index') {
-            define('HANDLER_CLASS', 'APP\plugins\themes\scieloTheme\pages\index\ScieloIndexHandler');
+        $handler = &$params[3];
+        if ($this->getEnabled() && ($page == '' or $page == 'index')) {
+            $handler = new \APP\plugins\themes\scieloTheme\pages\index\ScieloIndexHandler($this);
             return true;
         }
         return false;
