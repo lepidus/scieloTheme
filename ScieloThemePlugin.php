@@ -23,6 +23,7 @@ use PKP\core\PKPSessionGuard;
 use PKP\plugins\Hook;
 use APP\template\TemplateManager;
 use APP\facades\Repo;
+use PKP\userGroup\UserGroup;
 
 class ScieloThemePlugin extends ThemePlugin
 {
@@ -250,12 +251,11 @@ class ScieloThemePlugin extends ThemePlugin
 
     private function getTranslatorsUserGroup(int $contextId)
     {
-        $contextUserGroups = Repo::userGroup()->getCollector()
-            ->filterByContextIds([$contextId])
-            ->getMany();
+        $contextUserGroups = UserGroup::withContextIds([[$contextId]])
+            ->get();
 
         foreach ($contextUserGroups as $userGroup) {
-            $userGroupAbbrev = strtolower($userGroup->getData('abbrev', 'en'));
+            $userGroupAbbrev = strtolower($userGroup->abbrev['en']);
 
             if ($userGroupAbbrev === 'tr') {
                 return $userGroup;

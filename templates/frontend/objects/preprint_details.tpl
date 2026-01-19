@@ -1,14 +1,14 @@
 {**
  * templates/frontend/objects/preprint_details.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
- * @brief View of an Preprint which displays all details about the article.
+ * @brief View of an Preprint which displays all details about the preprint.
  *  Expected to be primary object on the page.
  *
- * Many journals will want to add custom data to this object, either through
+ * Many servers will want to add custom data to this object, either through
  * plugins which attach to hooks on the page or by editing the template
  * themselves. In order to facilitate this, a flexible layout markup pattern has
  * been implemented. If followed, plugins and other content can provide markup
@@ -46,26 +46,36 @@
  * Core components are produced manually below, but can also be added via
  * plugins using the hooks provided:
  *
- * Templates::Preprint::Main
- * Templates::Preprint::Details
+ * @hook Templates::Preprint::Main []
+ * @hook Templates::Preprint::Details::Reference [[parsedCitation]]
+ * @hook Templates::Preprint::Details []
  *
  * @uses $preprint Preprint This preprint
  * @uses $publication Publication The publication being displayed
- * @uses $firstPublication Publication The first published version of this article
- * @uses $currentPublication Publication The most recently published version of this article
- * @uses $section Section The journal section this preprint is assigned to
+ * @uses $firstPublication Publication The first published version of this preprint
+ * @uses $currentPublication Publication The most recently published version of this preprint
+ * @uses $section Section The server section this preprint is assigned to
+ * @uses $categories array Category titles and paths the preprint is assigned to
  * @uses $primaryGalleys array List of preprint galleys that are not supplementary or dependent
  * @uses $supplementaryGalleys array List of preprint galleys that are supplementary
  * @uses $keywords array List of keywords assigned to this preprint
  * @uses $pubIdPlugins Array of pubId plugins which this preprint may be assigned
  * @uses $licenseTerms string License terms.
- * @uses $copyrightHolder string Name of copyright holder
- * @uses $copyrightYear string Year of copyright
  * @uses $licenseUrl string URL to license. Only assigned if license should be
  *   included with published submissions.
  * @uses $ccLicenseBadge string An image and text with details about the license
  *}
 <article class="obj_article_details">
+
+	{* Indicate if this is only a preview *}
+	{if $publication->getData('status') !== \PKP\submission\PKPSubmission::STATUS_PUBLISHED}
+		<div class="cmp_notification notice">
+
+			{capture assign="submissionUrl"}{url page="dashboard" op="editorial" workflowSubmissionId=$preprint->getId()}{/capture}
+
+			{translate key="submission.viewingPreview" url=$submissionUrl}
+		</div>
+	{/if}
 
 	{* Notification that this is an old version *}
 	{if $currentPublication->getId() !== $publication->getId()}
@@ -79,13 +89,13 @@
 	{/if}
 
 	{* Crossref requirements: The landing page must link to the AM/VOR when it is made available.*}
-	{if $publication->getData('relationStatus') == PUBLICATION_RELATION_SUBMITTED || $publication->getData('relationStatus') == PUBLICATION_RELATION_PUBLISHED}
+	{if $publication->getData('relationStatus') == \APP\publication\Publication::PUBLICATION_RELATION_PUBLISHED}
 		<div class="cmp_notification notice">
 			{if $publication->getData('relationStatus') == PUBLICATION_RELATION_PUBLISHED}
 				{translate key="publication.relation.published"}
 				{if $publication->getData('vorDoi')}
 					<br />
-					{translate key="publication.relation.vorDoi"} 
+					{translate key="publication.relation.vorDoi"}
 					<span class="value">
 						<a href="{$publication->getData('vorDoi')|escape}">
 							{$publication->getData('vorDoi')|escape}
@@ -122,12 +132,12 @@
 	<span class="preprint_version">{translate key="publication.version" version=$publication->getData('version')}</span>
 
 	<h1 class="page_title">
-		{$publication->getLocalizedTitle()|escape}
+		{$publication->getLocalizedTitle(null, 'html')|strip_unsafe_html}
 	</h1>
 
 	{if $publication->getLocalizedData('subtitle')}
 		<h2 class="subtitle">
-			{$publication->getLocalizedData('subtitle')|escape}
+			{$publication->getLocalizedSubTitle(null, 'html')|strip_unsafe_html}
 		</h2>
 	{/if}
 
@@ -135,7 +145,7 @@
 		<div class="main_entry">
 			{if $publication->getData('authors')}
 				<section class="item authors">
-					<h2 class="pkp_screen_reader">{translate key="article.authors"}</h2>
+					<h2 class="pkp_screen_reader">{translate key="submission.authors"}</h2>
 					<ul class="versions authors">
 					{foreach from=$publication->getData('authors') item=author}
 						<li>
@@ -148,19 +158,24 @@
 									</span>
 								{/if}
 							</span>
-							{if $author->getLocalizedData('affiliation')}
+							{if count($author->getAffiliations()) > 0}
 								<span class="affiliation">
-									{$author->getLocalizedData('affiliation')|escape}
-									{if $author->getData('rorId')}
-										<a href="{$author->getData('rorId')|escape}">{$rorIdIcon}</a>
-									{/if}
+									{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
+										<span>{$affiliation->getLocalizedName()|escape}</span>
+										{if $affiliation->getRor()}<a href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>{/if}
+										{if !$smarty.foreach.affiliations.last}{translate key="common.commaListSeparator"}{/if}
+									{/foreach}
 								</span>
 							{/if}
 							{if $author->getData('orcid')}
 								<span class="orcid">
-									{$orcidIcon}
+									{if $author->hasVerifiedOrcid()}
+										{$orcidIcon}
+									{else}
+										{$orcidUnauthenticatedIcon}
+									{/if}
 									<a href="{$author->getData('orcid')|escape}" target="_blank">
-										{$author->getData('orcid')|escape}
+										{$author->getOrcidDisplayValue()|escape}
 									</a>
 								</span>
 							{/if}
@@ -180,10 +195,10 @@
 						{translate key="semicolon" label=$translatedDOI}
 					</h2>
 					<span class="value">
-						<a href="{$doiUrl}">
-							{$doiUrl}
-						</a>
-					</span>
+ 						<a href="{$doiUrl}">
+ 							{$doiUrl}
+ 						</a>
+ 					</span>
 				</section>
 			{/if}
 
@@ -212,17 +227,17 @@
 
 			{call_hook name="Templates::Preprint::Main"}
 
-			{* Usage statistics chart*}
+			{* Usage statistics chart *}
 			{if $activeTheme && $activeTheme->getOption('displayStats') != 'none'}
 				{$activeTheme->displayUsageStatsGraph($preprint->getId())}
 				<section class="item downloads_chart">
 					<h2 class="label">
-						{translate key="plugins.themes.scielo.displayStats.downloads"}
+						{translate key="plugins.themes.default.displayStats.downloads"}
 					</h2>
 					<div class="value">
 						<canvas class="usageStatsGraph" data-object-type="Submission" data-object-id="{$preprint->getId()|escape}"></canvas>
 						<div class="usageStatsUnavailable" data-object-type="Submission" data-object-id="{$preprint->getId()|escape}">
-							{translate key="plugins.themes.scielo.displayStats.noStats"}
+							{translate key="plugins.themes.default.displayStats.noStats"}
 						</div>
 					</div>
 				</section>
@@ -244,25 +259,27 @@
 							{translate key="submission.authorBiography"}
 						{/if}
 					</h2>
+					<ul class="authors">
 					{foreach from=$publication->getData('authors') item=author}
 						{if $author->getLocalizedData('biography')}
-							<section class="sub_item">
-								<h3 class="label">
-									{if $author->getLocalizedData('affiliation')}
+							<li class="sub_item">
+								<div class="label">
+									{if $author->getLocalizedAffiliationNamesAsString()}
 										{capture assign="authorName"}{$author->getFullName()|escape}{/capture}
-										{capture assign="authorAffiliation"}<span class="affiliation">{$author->getLocalizedData('affiliation')|escape}</span>{/capture}
-										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliation}
+										{capture assign="authorAffiliations"} {$author->getLocalizedAffiliationNamesAsString(null, ', ')|escape} {/capture}
+										{translate key="submission.authorWithAffiliation" name=$authorName affiliation=$authorAffiliations}
 									{else}
 										{$author->getFullName()|escape}
 									{/if}
-								</h3>
+								</div>
 								<div class="value">
 									{$author->getLocalizedData('biography')|strip_unsafe_html}
 								</div>
 							</section>
 						{/if}
 					{/foreach}
-				</section>
+					</ul>
+					</section>
 			{/if}
 
 			{* References *}
@@ -273,16 +290,9 @@
 					</h2>
 					<div class="value">
 						{if $parsedCitations}
-							<p>{$parsedCitations[0]->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Preprint::Details::Reference" citation=$parsedCitation}</p>
-							
-							<div id="demo" class="collapse">
-								{foreach from=$parsedCitations item="parsedCitation"}
-									{if $parsedCitation->getSequence() > 1}
-									<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Preprint::Details::Reference" citation=$parsedCitation}</p>
-									{/if}
-								{/foreach}
-							</div>
-							<a href="#demo" class="collapsible" data-toggle="collapse"></a>
+							{foreach from=$parsedCitations item="parsedCitation"}
+								<p>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Preprint::Details::Reference" citation=$parsedCitation}</p>
+							{/foreach}
 						{else}
 							{$publication->getData('citationsRaw')|escape|nl2br}
 						{/if}
@@ -309,18 +319,23 @@
 			{* Preprint Galleys *}
 			{if $primaryGalleys}
 				<div class="item galleys">
+					<h2 class="pkp_screen_reader">
+						{translate key="submission.downloads"}
+					</h2>
 					<ul class="value galleys_links">
 						{foreach from=$primaryGalleys item=galley}
 							<li>
 								{include file="frontend/objects/galley_link.tpl" parent=$preprint publication=$publication galley=$galley}
 							</li>
-							{call_hook name="Hypothesis::annotationNumber" galley=$galley}
 						{/foreach}
 					</ul>
 				</div>
 			{/if}
 			{if $supplementaryGalleys}
 				<div class="item galleys">
+					<h3 class="pkp_screen_reader">
+						{translate key="submission.additionalFiles"}
+					</h3>
 					<ul class="value supplementary_galleys_links">
 						{foreach from=$supplementaryGalleys item=galley}
 							<li>
@@ -330,7 +345,6 @@
 					</ul>
 				</div>
 			{/if}
-
 			{if $publication->getData('datePublished')}
 			<div class="item published">
 				<section class="sub_item">
@@ -339,7 +353,7 @@
 					</h2>
 					<div class="value">
 						{* If this is the original version *}
-						{if $firstPublication->getID() === $publication->getId()}
+						{if $firstPublication->getId() === $publication->getId()}
 							<span>{$firstPublication->getData('datePublished')|date_format:$dateFormatShort}</span>
 						{* If this is an updated version *}
 						{else}
@@ -370,6 +384,26 @@
 				{/if}
 			</div>
 			{/if}
+
+			{* Categories preprint appears in *}
+			<div class="item categories">
+				{if $categories}
+					<section class="sub_item">
+						<h2 class="label">
+							{translate key="category.categories"}
+						</h2>
+						<ul class="value">
+							{foreach from=$categories item=category}
+								<li class="category_{$category.path}">
+									<a href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="preprints" op="category" path=$category.path|escape}">
+										{$category.title|escape}
+									</a>
+								</li>
+							{/foreach}
+						</ul>
+					</section>
+				{/if}
+			</div>
 
 			{* How to cite *}
 			{if $citation}
@@ -423,19 +457,13 @@
 				</div>
 			{/if}
 
-			{* Section preprint appears in *}
-			<div class="item section">
-				{if $section}
-					<section class="sub_item">
-						<h2 class="label">
-							{translate key="section.section"}
-						</h2>
-						<div class="value">
-							{$section->getLocalizedTitle()|escape}
-						</div>
-					</section>
-				{/if}
-			</div>
+			{* Data Availability Statement *}
+			{if $publication->getLocalizedData('dataAvailability')}
+				<section class="item dataAvailability">
+					<h2 class="label">{translate key="submission.dataAvailability"}</h2>
+					{$publication->getLocalizedData('dataAvailability')|strip_unsafe_html}
+				</section>
+			{/if}
 
 			{* PubIds (requires plugins) *}
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
@@ -449,9 +477,9 @@
 							{$pubIdPlugin->getPubIdDisplayType()|escape}
 						</h2>
 						<div class="value">
-							{if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-								<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">
-									{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							{if $pubIdPlugin->getResolvingURL($currentServer->getId(), $pubId)|escape}
+								<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentServer->getId(), $pubId)|escape}">
+									{$pubIdPlugin->getResolvingURL($currentServer->getId(), $pubId)|escape}
 								</a>
 							{else}
 								{$pubId|escape}
@@ -464,6 +492,9 @@
 			{* Licensing info *}
 			{if $currentContext->getLocalizedData('licenseTerms') || $publication->getData('licenseUrl')}
 				<div class="item copyright">
+					<h2 class="label">
+						{translate key="submission.license"}
+					</h2>
 					{if $publication->getData('licenseUrl')}
 						{if $ccLicenseBadge}
 							{if $publication->getLocalizedData('copyrightHolder')}
@@ -473,7 +504,7 @@
 						{else}
 							<a href="{$publication->getData('licenseUrl')|escape}" class="copyright">
 								{if $publication->getLocalizedData('copyrightHolder')}
-									{translate key="submission.copyrightStatement" copyrightHolder=$copyrightHolder copyrightYear=$publication->getData('copyrightYear')}
+									{translate key="submission.copyrightStatement" copyrightHolder=$publication->getLocalizedData('copyrightHolder') copyrightYear=$publication->getData('copyrightYear')}
 								{else}
 									{translate key="submission.license"}
 								{/if}
