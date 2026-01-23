@@ -19,16 +19,17 @@ use APP\core\Application;
 use APP\file\PublicFileManager;
 use PKP\config\Config;
 use PKP\plugins\ThemePlugin;
-use PKP\session\SessionManager;
+use PKP\core\PKPSessionGuard;
 use PKP\plugins\Hook;
 use APP\template\TemplateManager;
 use APP\facades\Repo;
+use PKP\userGroup\UserGroup;
 
 class ScieloThemePlugin extends ThemePlugin
 {
     public function isActive()
     {
-        if (SessionManager::isDisabled()) {
+        if (PKPSessionGuard::isSessionDisable()) {
             return true;
         }
         return parent::isActive();
@@ -177,13 +178,13 @@ class ScieloThemePlugin extends ThemePlugin
 
         // Load jQuery from a CDN or, if CDNs are disabled, from a local copy.
         $min = Config::getVar('general', 'enable_minified') ? '.min' : '';
-        $jquery = $request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jquery/jquery' . $min . '.js';
-        $jqueryUI = $request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jqueryui/jquery-ui' . $min . '.js';
+        $jquery = $request->getBaseUrl() . '/js/build/jquery/jquery' . $min . '.js';
+        $jqueryUI = $request->getBaseUrl() . '/js/build/jquery-ui/jquery-ui' . $min . '.js';
         // Use an empty `baseUrl` argument to prevent the theme from looking for
         // the files within the theme directory
-        $this->addScript('jQuery', $jquery, array('baseUrl' => ''));
-        $this->addScript('jQueryUI', $jqueryUI, array('baseUrl' => ''));
-        $this->addScript('jQueryTagIt', $request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js', array('baseUrl' => ''));
+        $this->addScript('jQuery', $jquery, ['baseUrl' => '']);
+        $this->addScript('jQueryUI', $jqueryUI, ['baseUrl' => '']);
+        $this->addScript('jQueryTagIt', $request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js', ['baseUrl' => '']);
 
         // Load Bootsrap's dropdown
         $this->addScript('popper', 'js/lib/popper/popper.js');
@@ -212,8 +213,9 @@ class ScieloThemePlugin extends ThemePlugin
     public function replaceIndexHandler($hookName, $params)
     {
         $page = $params[0];
-        if ($page == '' or $page == 'index') {
-            define('HANDLER_CLASS', 'APP\plugins\themes\scieloTheme\pages\index\ScieloIndexHandler');
+        $handler = &$params[3];
+        if ($this->getEnabled() && ($page == '' or $page == 'index')) {
+            $handler = new \APP\plugins\themes\scieloTheme\pages\index\ScieloIndexHandler($this);
             return true;
         }
         return false;
@@ -249,12 +251,11 @@ class ScieloThemePlugin extends ThemePlugin
 
     private function getTranslatorsUserGroup(int $contextId)
     {
-        $contextUserGroups = Repo::userGroup()->getCollector()
-            ->filterByContextIds([$contextId])
-            ->getMany();
+        $contextUserGroups = UserGroup::withContextIds([[$contextId]])
+            ->get();
 
         foreach ($contextUserGroups as $userGroup) {
-            $userGroupAbbrev = strtolower($userGroup->getData('abbrev', 'en'));
+            $userGroupAbbrev = strtolower($userGroup->abbrev['en']);
 
             if ($userGroupAbbrev === 'tr') {
                 return $userGroup;
