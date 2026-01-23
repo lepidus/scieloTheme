@@ -178,13 +178,13 @@ class ScieloThemePlugin extends ThemePlugin
 
         // Load jQuery from a CDN or, if CDNs are disabled, from a local copy.
         $min = Config::getVar('general', 'enable_minified') ? '.min' : '';
-        $jquery = $request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jquery/jquery' . $min . '.js';
-        $jqueryUI = $request->getBaseUrl() . '/lib/pkp/lib/vendor/components/jqueryui/jquery-ui' . $min . '.js';
+        $jquery = $request->getBaseUrl() . '/js/build/jquery/jquery' . $min . '.js';
+        $jqueryUI = $request->getBaseUrl() . '/js/build/jquery-ui/jquery-ui' . $min . '.js';
         // Use an empty `baseUrl` argument to prevent the theme from looking for
         // the files within the theme directory
-        $this->addScript('jQuery', $jquery, array('baseUrl' => ''));
-        $this->addScript('jQueryUI', $jqueryUI, array('baseUrl' => ''));
-        $this->addScript('jQueryTagIt', $request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js', array('baseUrl' => ''));
+        $this->addScript('jQuery', $jquery, ['baseUrl' => '']);
+        $this->addScript('jQueryUI', $jqueryUI, ['baseUrl' => '']);
+        $this->addScript('jQueryTagIt', $request->getBaseUrl() . '/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js', ['baseUrl' => '']);
 
         // Load Bootsrap's dropdown
         $this->addScript('popper', 'js/lib/popper/popper.js');
