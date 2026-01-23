@@ -8,7 +8,7 @@ describe('SciELO Theme - Plugin setup', function () {
 
 		cy.get('input[id^=select-cell-scielothemeplugin]').check();
 		cy.get('input[id^=select-cell-scielothemeplugin]').should('be.checked');
-		cy.waitJQuery();
+		cy.reload();
 
 		cy.get('button[id="appearance-button"]').click();
 		cy.get('#theme-button').click();
