@@ -24,6 +24,7 @@ use PKP\db\DAORegistry;
 use APP\submission\Submission;
 use PKP\plugins\PluginRegistry;
 use APP\observers\events\UsageEvent;
+use PKP\userGroup\UserGroup;
 use PKP\security\Role;
 
 class ScieloIndexHandler extends IndexHandler
@@ -66,7 +67,9 @@ class ScieloIndexHandler extends IndexHandler
                 'sections' => $sections,
                 'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
                 'publishedSubmissions' => $publishedSubmissions->toArray(),
-                'authorUserGroups' => Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $server->getId()),
+                'authorUserGroups' => UserGroup::withRoleIds([Role::ROLE_ID_AUTHOR])
+                    ->withContextIds([$server->getId()])
+                    ->get(),
             ));
 
             $this->_setupAnnouncements($server, $templateMgr);
