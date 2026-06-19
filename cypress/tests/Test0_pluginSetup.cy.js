@@ -1,5 +1,5 @@
 describe('SciELO Theme - Plugin setup', function () {
-    it('Enables SciELO Theme plugin', function () {
+    it('Enables and selects SciELO Theme as current theme', function () {
 		cy.login('dbarnes', null, 'publicknowledge');
 
 		cy.contains('a', 'Website').click();
@@ -12,10 +12,12 @@ describe('SciELO Theme - Plugin setup', function () {
 
         cy.get('#appearance-button').click();
         cy.get('#theme-button').click();
-        cy.get('#theme-themePluginPath-control').select('SciELO Theme');
+        cy.get('select[name="themePluginPath"]').select('SciELO Theme');
 
         cy.contains('Usage statistics display options');
-        cy.get('button:visible:contains("Save")').click();
+        cy.contains('button', 'Save').click();
         cy.get('.pkpFormPage__status:contains("Saved")');
+
+        cy.logout();
     });
 });
