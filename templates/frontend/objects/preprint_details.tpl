@@ -331,8 +331,16 @@
 				</div>
 			{/if}
 
-			{if $publication->getData('datePublished')}
-			<div class="item published">
+			<div class="item dates">
+				<section class="sub_item">
+					<h2 class="label">
+						{translate key="submissions.submitted"}
+					</h2>
+					<div class="value">
+						<span>{$preprint->getData('dateSubmitted')|date_format:$dateFormatShort}</span>
+					</div>
+				</section>
+				{if $publication->getData('datePublished')}
 				<section class="sub_item">
 					<h2 class="label">
 						{translate key="submissions.published"}
@@ -347,7 +355,7 @@
 						{/if}
 					</div>
 				</section>
-				{if count($preprint->getPublishedPublications()) > 1}
+					{if count($preprint->getPublishedPublications()) > 1}
 					<section class="sub_item versions">
 						<h2 class="label">
 							{translate key="submission.versions"}
@@ -367,9 +375,9 @@
 							{/foreach}
 						</ul>
 					</section>
+					{/if}
 				{/if}
 			</div>
-			{/if}
 
 			{* How to cite *}
 			{if $citation}
