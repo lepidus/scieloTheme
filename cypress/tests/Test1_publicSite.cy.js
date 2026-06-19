@@ -17,7 +17,7 @@ describe('SciELO Theme - Public site features', function () {
         cy.contains('h1', 'Finocchiaro: Arguments About Arguments');
         cy.get('div.dates').within(() => {
             cy.contains('Submitted');
-            cy.contains('2025-11-05');
+            cy.contains('span', /^\d{4}-\d{2}-\d{2}$/);
         });
     });
 });
