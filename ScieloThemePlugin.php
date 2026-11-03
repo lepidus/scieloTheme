@@ -3,8 +3,8 @@
 /**
  * @file plugins/themes/scieloTheme/ScieloThemePlugin.php
  *
- * Copyright (c) 2020 - 2024 Lepidus Tecnologia
- * Copyright (c) 2020 - 2024 SciELO
+ * Copyright (c) 2020 - 2026 Lepidus Tecnologia
+ * Copyright (c) 2020 - 2026 SciELO
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ScieloThemePlugin
